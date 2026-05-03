@@ -1,0 +1,4702 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Varadhi Club — Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      * {
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #1a1a2e;
+        background-image:
+          radial-gradient(
+            circle at 15% 25%,
+            rgba(15, 118, 110, 0.18) 0%,
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 85% 75%,
+            rgba(20, 184, 166, 0.1) 0%,
+            transparent 45%
+          );
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 16px;
+      }
+      /* ── Phone frame ── */
+
+      .phone-frame {
+        width: 375px;
+        height: 812px;
+        background: #fafafa;
+        border-radius: 44px;
+        border: 10px solid #1c1c1e;
+        box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.06),
+          0 40px 100px rgba(0, 0, 0, 0.55),
+          0 8px 24px rgba(0, 0, 0, 0.3),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+        position: relative;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .phone-frame::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 28px;
+        background: #1c1c1e;
+        border-radius: 0 0 18px 18px;
+        z-index: 100;
+      }
+
+      .phone-frame::after {
+        content: "";
+        position: absolute;
+        right: -12px;
+        top: 100px;
+        width: 4px;
+        height: 60px;
+        background: #2c2c2e;
+        border-radius: 0 2px 2px 0;
+        box-shadow:
+          0 80px 0 #2c2c2e,
+          0 160px 0 #2c2c2e;
+      }
+      /* ── Scroll ── */
+
+      .phone-inner {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        padding-top: 34px;
+      }
+
+      .phone-inner::-webkit-scrollbar {
+        display: none;
+      }
+
+      .phone-inner {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      /* ── Toggle ── */
+
+      .toggle {
+        position: relative;
+        width: 38px;
+        height: 21px;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+
+      .toggle input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        position: absolute;
+      }
+
+      .toggle-track {
+        position: absolute;
+        inset: 0;
+        background: #0f766e;
+        border-radius: 20px;
+        transition: background 0.2s ease;
+      }
+
+      .toggle-thumb {
+        position: absolute;
+        top: 2.5px;
+        left: 19px;
+        width: 16px;
+        height: 16px;
+        background: #fff;
+        border-radius: 50%;
+        transition: left 0.2s ease;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+      }
+
+      .toggle input:not(:checked) ~ .toggle-track {
+        background: #d1d5db;
+      }
+
+      .toggle input:not(:checked) ~ .toggle-thumb {
+        left: 2.5px;
+      }
+      /* ── Horizontal scroll ── */
+
+      .scroll-x {
+        overflow-x: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .scroll-x::-webkit-scrollbar {
+        display: none;
+      }
+      /* ── Cards ── */
+
+      .ride-card {
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease;
+        cursor: pointer;
+      }
+
+      .ride-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 36px rgba(0, 0, 0, 0.13) !important;
+      }
+
+      .ride-card:active {
+        transform: translateY(0);
+      }
+
+      .similar-card {
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease;
+        cursor: pointer;
+      }
+
+      .similar-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.11) !important;
+      }
+      /* ── Buttons ── */
+
+      .btn-book {
+        background: #0f766e;
+        color: #fff;
+        border: none;
+        transition:
+          background 0.18s,
+          transform 0.1s,
+          box-shadow 0.18s;
+      }
+
+      .btn-book:hover {
+        background: #0d6560;
+        box-shadow: 0 6px 20px rgba(15, 118, 110, 0.4);
+      }
+
+      .btn-book:active {
+        transform: scale(0.97);
+      }
+
+      .btn-outline {
+        border: 1.5px solid #0f766e;
+        color: #0f766e;
+        background: transparent;
+        transition:
+          background 0.16s,
+          color 0.16s;
+      }
+
+      .btn-outline:hover {
+        background: #0f766e;
+        color: #fff;
+      }
+
+      .btn-secondary {
+        background: #f1f5f9;
+        color: #374151;
+        border: none;
+        transition:
+          background 0.16s,
+          transform 0.1s;
+      }
+
+      .btn-secondary:hover {
+        background: #e2e8f0;
+      }
+
+      .btn-secondary:active {
+        transform: scale(0.97);
+      }
+      /* ── Safety chips ── */
+
+      .safety-chip {
+        transition:
+          background 0.16s,
+          transform 0.12s;
+        cursor: pointer;
+      }
+
+      .safety-chip:hover {
+        background: rgba(15, 118, 110, 0.12) !important;
+        transform: scale(1.04);
+      }
+
+      .safety-chip:active {
+        transform: scale(0.97);
+      }
+      /* ── Tab bar ── */
+
+      .tab-item {
+        transition:
+          color 0.15s,
+          transform 0.12s;
+        cursor: pointer;
+      }
+
+      .tab-item:hover {
+        transform: translateY(-1px);
+      }
+
+      .tab-item:active {
+        transform: scale(0.92);
+      }
+      /* ── Badge pill ── */
+
+      .badge-pill {
+        transition:
+          transform 0.13s,
+          box-shadow 0.13s;
+        cursor: default;
+      }
+
+      .badge-pill:hover {
+        transform: scale(1.05);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      /* ── Avatars ── */
+
+      .avatar-gradient {
+        background: linear-gradient(
+          135deg,
+          #0f766e 0%,
+          #14b8a6 50%,
+          #6366f1 100%
+        );
+      }
+
+      .avatar-driver {
+        background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+      }
+
+      .avatar-ravi {
+        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      }
+
+      .avatar-priya {
+        background: linear-gradient(135deg, #ec4899 0%, #f59e0b 100%);
+      }
+
+      .avatar-refer {
+        background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+      }
+      /* ── Search bar ── */
+
+      .search-bar {
+        transition:
+          box-shadow 0.16s,
+          border-color 0.16s;
+      }
+
+      .search-bar:hover {
+        box-shadow: 0 2px 12px rgba(15, 118, 110, 0.12);
+        border-color: #0f766e !important;
+      }
+
+      .search-bar:focus-within {
+        box-shadow: 0 2px 12px rgba(15, 118, 110, 0.18);
+        border-color: #0f766e !important;
+      }
+      /* ── Swap button ── */
+
+      .swap-btn {
+        transition:
+          transform 0.2s,
+          background 0.16s;
+        cursor: pointer;
+      }
+
+      .swap-btn:hover {
+        transform: rotate(180deg) scale(1.1);
+        background: #0d6560 !important;
+      }
+
+      .swap-btn:active {
+        transform: rotate(180deg) scale(0.95);
+      }
+      /* ── Dashed connector ── */
+
+      .dashed-connector {
+        border-left: 2px dashed #cbd5e1;
+        height: 16px;
+        margin-left: 15px;
+      }
+      /* ── Guaranteed banner ── */
+
+      .guaranteed-banner {
+        background: linear-gradient(90deg, #fef3c7 0%, #fde68a 100%);
+        border: 1px solid #f59e0b;
+        border-radius: 8px;
+        padding: 7px 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      /* ── Trust score text ── */
+
+      .trust-text {
+        background: linear-gradient(90deg, #0f766e, #14b8a6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      /* ── View details link ── */
+
+      .view-details {
+        transition: color 0.15s;
+        cursor: pointer;
+      }
+
+      .view-details:hover {
+        color: #0d6560;
+        text-decoration: underline;
+      }
+      /* ── Pulse animation ── */
+
+      @keyframes pulse-dot {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.7;
+          transform: scale(1.2);
+        }
+      }
+
+      .notif-dot {
+        animation: pulse-dot 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse-ring {
+        0% {
+          transform: scale(1);
+          opacity: 0.6;
+        }
+        100% {
+          transform: scale(1.6);
+          opacity: 0;
+        }
+      }
+
+      .pulse-ring {
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        border: 2px solid #0f766e;
+        animation: pulse-ring 1.8s ease-out infinite;
+      }
+      /* ── Savings counter ── */
+
+      @keyframes count-up {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .count-anim {
+        animation: count-up 0.4s ease forwards;
+      }
+      /* referral styles moved inline */
+      /* ── Toast ── */
+
+      #toast {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%) translateY(80px);
+        background: #0f172a;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 99px;
+        font-size: 13px;
+        font-weight: 600;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+        transition:
+          transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+          opacity 0.3s;
+        opacity: 0;
+        z-index: 9999;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        pointer-events: none;
+      }
+
+      #toast.show {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
+      /* ── Booking modal ── */
+
+      #bookingModal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        z-index: 1000;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s;
+      }
+
+      #bookingModal.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .modal-sheet {
+        width: 375px;
+        background: #fff;
+        border-radius: 24px 24px 0 0;
+        padding: 0 0 32px;
+        transform: translateY(100%);
+        transition: transform 0.35s cubic-bezier(0.34, 1.2, 0.64, 1);
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      #bookingModal.open .modal-sheet {
+        transform: translateY(0);
+      }
+      /* ── Safety modal ── */
+
+      #safetyModal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        z-index: 1000;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s;
+      }
+
+      #safetyModal.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      /* ── Progress bar ── */
+
+      @keyframes progress {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      .progress-bar {
+        animation: progress 2.5s ease forwards;
+      }
+      /* ── Ripple ── */
+
+      .ripple-wrap {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ripple-wrap::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: inherit;
+        transform: scale(0);
+        opacity: 0;
+        transition:
+          transform 0.4s,
+          opacity 0.4s;
+      }
+
+      .ripple-wrap:active::after {
+        transform: scale(2);
+        opacity: 1;
+        transition: 0s;
+      }
+      /* ── Section label ── */
+
+      .section-label {
+        font-size: 10px;
+        font-weight: 700;
+        color: #94a3b8;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      /* desktop label */
+
+      .desktop-label {
+        text-align: center;
+        margin-bottom: 10px;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+      /* ── Savings tile ── */
+
+      .savings-pill {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: linear-gradient(90deg, #ecfdf5, #d1fae5);
+        border: 1px solid #6ee7b7;
+        border-radius: 12px;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+      }
+      /* ── Address modal ── */
+
+      #addressModal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(4px);
+        z-index: 1000;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.22s;
+      }
+
+      #addressModal.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      #addressModal .modal-sheet {
+        width: 375px;
+        background: #fff;
+        border-radius: 24px 24px 0 0;
+        padding: 0 0 28px;
+        transform: translateY(100%);
+        transition: transform 0.32s cubic-bezier(0.34, 1.2, 0.64, 1);
+      }
+
+      #addressModal.open .modal-sheet {
+        transform: translateY(0);
+      }
+
+      .addr-input {
+        width: 100%;
+        padding: 11px 14px;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #0f172a;
+        outline: none;
+        transition:
+          border-color 0.15s,
+          box-shadow 0.15s;
+        background: #f8fafc;
+      }
+
+      .addr-input:focus {
+        border-color: #0f766e;
+        box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
+        background: #fff;
+      }
+
+      .addr-suggestion {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.13s;
+      }
+
+      .addr-suggestion:hover {
+        background: #f0fdf4;
+      }
+
+      .addr-suggestion:active {
+        background: #dcfce7;
+      }
+      /* ── Simple referral ── */
+
+      .ref-simple {
+        background: #fff;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 14px 16px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      }
+    </style>
+  </head>
+
+  <body>
+    <p class="desktop-label">Varadhi Club · Mobile Preview</p>
+
+    <!-- ══════════ PHONE FRAME ══════════ -->
+    <div class="phone-frame">
+      <div class="phone-inner" id="phoneScroll">
+        <!-- STATUS BAR -->
+        <div
+          style="
+            padding: 4px 24px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <span
+            id="clockDisplay"
+            style="
+              font-size: 11px;
+              font-weight: 700;
+              color: #1c1c1e;
+              letter-spacing: 0.01em;
+            "
+            >9:41</span
+          >
+          <div style="display: flex; align-items: center; gap: 5px">
+            <svg width="16" height="11" viewBox="0 0 16 11" fill="none">
+              <rect x="0" y="7" width="3" height="4" rx=".8" fill="#1C1C1E" />
+              <rect x="4.5" y="5" width="3" height="6" rx=".8" fill="#1C1C1E" />
+              <rect
+                x="9"
+                y="2.5"
+                width="3"
+                height="8.5"
+                rx=".8"
+                fill="#1C1C1E"
+              />
+              <rect
+                x="13.5"
+                y="0"
+                width="3"
+                height="11"
+                rx=".8"
+                fill="#1C1C1E"
+              />
+            </svg>
+            <svg width="15" height="11" viewBox="0 0 15 11" fill="none">
+              <path d="M7.5 8.5a1 1 0 100 2 1 1 0 000-2z" fill="#1C1C1E" />
+              <path
+                d="M4.7 6.3a4 4 0 015.6 0"
+                stroke="#1C1C1E"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <path
+                d="M2.2 3.8a7 7 0 0110.6 0"
+                stroke="#1C1C1E"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                fill="none"
+              />
+            </svg>
+            <svg width="24" height="11" viewBox="0 0 24 11" fill="none">
+              <rect
+                x=".5"
+                y=".5"
+                width="20"
+                height="10"
+                rx="2.5"
+                stroke="#1C1C1E"
+                stroke-width="1"
+                fill="none"
+              />
+              <rect
+                x="1.5"
+                y="1.5"
+                width="16"
+                height="8"
+                rx="1.5"
+                fill="#1C1C1E"
+              />
+              <path
+                d="M21.5 3.5v4a1.5 1.5 0 000-4z"
+                fill="#1C1C1E"
+                opacity=".4"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <!-- HEADER -->
+        <div
+          style="
+            padding: 10px 20px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <div style="display: flex; align-items: center; gap: 9px">
+            <div
+              style="
+                width: 36px;
+                height: 36px;
+                border-radius: 10px;
+                background: #0f766e;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 2px 10px rgba(15, 118, 110, 0.4);
+              "
+            >
+              <span style="color: #fff; font-weight: 800; font-size: 17px"
+                >V</span
+              >
+            </div>
+            <div>
+              <div
+                style="
+                  font-weight: 700;
+                  font-size: 15px;
+                  color: #0f172a;
+                  letter-spacing: -0.3px;
+                  line-height: 1.2;
+                "
+              >
+                Varadhi Club
+              </div>
+              <div
+                style="
+                  font-size: 10px;
+                  color: #64748b;
+                  font-weight: 500;
+                  letter-spacing: 0.02em;
+                "
+              >
+                Members Only
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px">
+            <!-- Shield -->
+            <div
+              onclick="openSafetyModal()"
+              style="
+                width: 34px;
+                height: 34px;
+                border-radius: 50%;
+                background: #f0fdf4;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: background 0.15s;
+              "
+              onmouseover="this.style.background = '#DCFCE7'"
+              onmouseout="this.style.background = '#F0FDF4'"
+            >
+              <svg width="16" height="18" viewBox="0 0 16 18" fill="none">
+                <path
+                  d="M8 1L1.5 4V9C1.5 12.5 4.3 15.7 8 17C11.7 15.7 14.5 12.5 14.5 9V4L8 1Z"
+                  fill="#0F766E"
+                  opacity=".18"
+                  stroke="#0F766E"
+                  stroke-width="1.4"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M5 9l2 2 4-4"
+                  stroke="#0F766E"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <!-- Bell -->
+            <div
+              id="bellBtn"
+              onclick="showToast('🔔 3 new ride updates!')"
+              style="
+                position: relative;
+                width: 34px;
+                height: 34px;
+                border-radius: 50%;
+                background: #f8fafc;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: background 0.15s;
+              "
+              onmouseover="this.style.background = '#F1F5F9'"
+              onmouseout="this.style.background = '#F8FAFC'"
+            >
+              <svg width="17" height="18" viewBox="0 0 17 18" fill="none">
+                <path
+                  d="M8.5 1.5C5.74 1.5 3.5 3.74 3.5 6.5V10.5L2 12.5V13.5H15V12.5L13.5 10.5V6.5C13.5 3.74 11.26 1.5 8.5 1.5Z"
+                  stroke="#374151"
+                  stroke-width="1.4"
+                  fill="none"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M6.5 13.5C6.5 14.6 7.4 15.5 8.5 15.5C9.6 15.5 10.5 14.6 10.5 13.5"
+                  stroke="#374151"
+                  stroke-width="1.4"
+                  fill="none"
+                />
+              </svg>
+              <div
+                class="notif-dot"
+                style="
+                  position: absolute;
+                  top: 6px;
+                  right: 7px;
+                  width: 7px;
+                  height: 7px;
+                  border-radius: 50%;
+                  background: #ef4444;
+                  border: 1.5px solid #fafafa;
+                "
+              ></div>
+            </div>
+            <!-- Avatar -->
+            <div
+              class="avatar-gradient"
+              onclick="switchTab(4)"
+              style="
+                width: 34px;
+                height: 34px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0 2px 8px rgba(15, 118, 110, 0.25);
+              "
+            >
+              <span style="color: #fff; font-weight: 700; font-size: 13px"
+                >N</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- TRUST BANNER -->
+        <div
+          style="
+            margin: 4px 16px 12px;
+            padding: 9px 14px;
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+            border: 1px solid #bbf7d0;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+          "
+        >
+          <div
+            style="
+              width: 28px;
+              height: 28px;
+              border-radius: 8px;
+              background: #0f766e;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-shrink: 0;
+            "
+          >
+            <svg width="13" height="15" viewBox="0 0 13 15" fill="none">
+              <rect
+                x="1.5"
+                y="6.5"
+                width="10"
+                height="8"
+                rx="2"
+                stroke="#fff"
+                stroke-width="1.4"
+                fill="none"
+              />
+              <path
+                d="M4 6.5V4.5a2.5 2.5 0 015 0v2"
+                stroke="#fff"
+                stroke-width="1.4"
+                stroke-linecap="round"
+              />
+              <circle cx="6.5" cy="10.5" r="1" fill="#fff" />
+            </svg>
+          </div>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; flex: 1">
+            <span
+              class="badge-pill"
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                padding: 3px 10px;
+                background: #dcfce7;
+                border-radius: 999px;
+                font-size: 11px;
+                font-weight: 600;
+                color: #15803d;
+                border: 1px solid #86efac;
+              "
+            >
+              <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
+                <circle cx="4.5" cy="4.5" r="4" fill="#16A34A" />
+                <path
+                  d="M2.5 4.5l1.5 1.5 2.5-2.5"
+                  stroke="#fff"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Identity verified
+            </span>
+            <span
+              class="badge-pill"
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                padding: 3px 10px;
+                background: #dcfce7;
+                border-radius: 999px;
+                font-size: 11px;
+                font-weight: 600;
+                color: #15803d;
+                border: 1px solid #86efac;
+              "
+            >
+              <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
+                <circle cx="4.5" cy="4.5" r="4" fill="#16A34A" />
+                <path
+                  d="M2.5 4.5l1.5 1.5 2.5-2.5"
+                  stroke="#fff"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Device bound
+            </span>
+          </div>
+          <div
+            onclick="showToast('✅ Your account is fully verified')"
+            style="
+              font-size: 10px;
+              font-weight: 700;
+              color: #0f766e;
+              cursor: pointer;
+              white-space: nowrap;
+            "
+          >
+            View ›
+          </div>
+        </div>
+
+        <!-- SEARCH SECTION -->
+        <div style="padding: 0 16px 14px">
+          <div style="margin-bottom: 14px">
+            <div
+              style="
+                font-size: 19px;
+                font-weight: 700;
+                color: #0f172a;
+                letter-spacing: -0.4px;
+                line-height: 1.3;
+              "
+            >
+              Good morning, Nikhil 👋
+            </div>
+            <div
+              style="
+                font-size: 12.5px;
+                color: #64748b;
+                font-weight: 400;
+                margin-top: 2px;
+              "
+            >
+              Your guaranteed ride awaits
+            </div>
+          </div>
+
+          <!-- Savings ticker -->
+          <div class="savings-pill">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M8 1C4.14 1 1 4.14 1 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7z"
+                fill="#DCFCE7"
+                stroke="#16A34A"
+                stroke-width="1.2"
+              />
+              <path
+                d="M5.5 8l2 2 3-3"
+                stroke="#16A34A"
+                stroke-width="1.3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span style="font-size: 12px; font-weight: 600; color: #15803d"
+              >This month you've saved
+              <span id="savingsAmt" style="font-weight: 800; color: #0f766e"
+                >₹1,350</span
+              >
+              with Varadhi!</span
+            >
+          </div>
+
+          <!-- Route bars -->
+          <div style="position: relative">
+            <!-- FROM bar — clickable -->
+            <div
+              class="search-bar"
+              onclick="openAddressModal('from')"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 11px 14px;
+                background: #fff;
+                border-radius: 12px;
+                border: 1.5px solid #e2e8f0;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+                cursor: pointer;
+              "
+            >
+              <div
+                style="
+                  width: 28px;
+                  height: 28px;
+                  border-radius: 8px;
+                  background: #eff6ff;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+              >
+                <svg width="12" height="16" viewBox="0 0 12 16" fill="none">
+                  <path
+                    d="M6 0C3.24 0 1 2.24 1 5c0 3.75 5 11 5 11s5-7.25 5-11c0-2.76-2.24-5-5-5z"
+                    fill="#3B82F6"
+                  />
+                  <circle cx="6" cy="5" r="2" fill="#fff" />
+                </svg>
+              </div>
+              <div style="flex: 1; min-width: 0">
+                <div
+                  style="
+                    font-size: 10px;
+                    font-weight: 600;
+                    color: #94a3b8;
+                    letter-spacing: 0.06em;
+                    text-transform: uppercase;
+                    margin-bottom: 1px;
+                  "
+                >
+                  FROM
+                </div>
+                <div
+                  id="fromText"
+                  style="
+                    font-size: 13.5px;
+                    font-weight: 500;
+                    color: #0f172a;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                  "
+                >
+                  Office Street, Sector 62
+                </div>
+              </div>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                style="flex-shrink: 0; opacity: 0.35"
+              >
+                <path
+                  d="M2 5l5 5 5-5"
+                  stroke="#374151"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+
+            <div class="dashed-connector" style="margin-left: 27px"></div>
+
+            <!-- TO bar — clickable -->
+            <div
+              class="search-bar"
+              onclick="openAddressModal('to')"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 11px 14px;
+                background: #fff;
+                border-radius: 12px;
+                border: 1.5px solid #e2e8f0;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+                cursor: pointer;
+              "
+            >
+              <div
+                style="
+                  width: 28px;
+                  height: 28px;
+                  border-radius: 8px;
+                  background: #fff1f2;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <circle
+                    cx="7"
+                    cy="7"
+                    r="5.5"
+                    stroke="#EF4444"
+                    stroke-width="1.4"
+                    fill="none"
+                  />
+                  <circle cx="7" cy="7" r="2.5" fill="#EF4444" />
+                </svg>
+              </div>
+              <div style="flex: 1; min-width: 0">
+                <div
+                  style="
+                    font-size: 10px;
+                    font-weight: 600;
+                    color: #94a3b8;
+                    letter-spacing: 0.06em;
+                    text-transform: uppercase;
+                    margin-bottom: 1px;
+                  "
+                >
+                  TO
+                </div>
+                <div
+                  id="toText"
+                  style="
+                    font-size: 13.5px;
+                    font-weight: 500;
+                    color: #0f172a;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                  "
+                >
+                  Cyber City, Gurugram
+                </div>
+              </div>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                style="flex-shrink: 0; opacity: 0.35"
+              >
+                <path
+                  d="M2 5l5 5 5-5"
+                  stroke="#374151"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+
+            <!-- Swap button -->
+            <div
+              class="swap-btn"
+              onclick="swapRoute()"
+              style="
+                position: absolute;
+                right: -2px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background: #0f766e;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 3px 10px rgba(15, 118, 110, 0.38);
+              "
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path
+                  d="M4 2L1 5l3 3"
+                  stroke="#fff"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M1 5h10"
+                  stroke="#fff"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M10 7l3 3-3 3"
+                  stroke="#fff"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M13 10H3"
+                  stroke="#fff"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- YOUR DAILY RIDE CARD -->
+        <div style="padding: 0 16px 16px">
+          <div
+            class="ride-card"
+            style="
+              background: #fff;
+              border-radius: 16px;
+              box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+              overflow: hidden;
+              border: 1px solid #f1f5f9;
+            "
+          >
+            <div
+              style="
+                height: 3px;
+                background: linear-gradient(
+                  90deg,
+                  #0f766e 0%,
+                  #14b8a6 60%,
+                  #6ee7b7 100%
+                );
+              "
+            ></div>
+
+            <div style="padding: 14px 16px 0">
+              <!-- Label + toggle -->
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  margin-bottom: 14px;
+                "
+              >
+                <div>
+                  <div
+                    style="
+                      font-size: 10px;
+                      font-weight: 700;
+                      color: #0f766e;
+                      letter-spacing: 0.1em;
+                      text-transform: uppercase;
+                    "
+                  >
+                    Your Daily Ride
+                  </div>
+                  <div
+                    id="repeatLabel"
+                    style="
+                      font-size: 11px;
+                      color: #64748b;
+                      font-weight: 500;
+                      margin-top: 1px;
+                    "
+                  >
+                    Mon–Fri · 8:30 AM
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px">
+                  <span
+                    id="repeatText"
+                    style="font-size: 11px; font-weight: 600; color: #0f766e"
+                    >Repeat Daily</span
+                  >
+                  <label class="toggle">
+                    <input type="checkbox" checked id="dailyToggle" />
+                    <div class="toggle-track"></div>
+                    <div class="toggle-thumb"></div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Driver -->
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  margin-bottom: 12px;
+                "
+              >
+                <div style="position: relative; flex-shrink: 0">
+                  <div
+                    class="avatar-driver"
+                    style="
+                      width: 52px;
+                      height: 52px;
+                      border-radius: 50%;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      box-shadow: 0 3px 10px rgba(245, 158, 11, 0.3);
+                    "
+                  >
+                    <span style="font-size: 20px; font-weight: 700; color: #fff"
+                      >A</span
+                    >
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      bottom: 1px;
+                      right: 1px;
+                      width: 12px;
+                      height: 12px;
+                      background: #22c55e;
+                      border-radius: 50%;
+                      border: 2px solid #fff;
+                    "
+                  ></div>
+                </div>
+                <div style="flex: 1">
+                  <div
+                    style="
+                      font-weight: 700;
+                      font-size: 15px;
+                      color: #0f172a;
+                      letter-spacing: -0.2px;
+                    "
+                  >
+                    Arjun Mehta
+                  </div>
+                  <div style="font-size: 12px; color: #64748b; margin-top: 1px">
+                    Bajaj Pulsar 150 ·
+                    <span style="font-weight: 600; color: #374151"
+                      >DL 4C AB 1234</span
+                    >
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 8px;
+                      margin-top: 5px;
+                    "
+                  >
+                    <div style="display: flex; align-items: center; gap: 4px">
+                      <svg
+                        width="13"
+                        height="14"
+                        viewBox="0 0 13 14"
+                        fill="none"
+                      >
+                        <path
+                          d="M6.5.5L.5 3.5V7C.5 10.2 3.1 13.1 6.5 14 9.9 13.1 12.5 10.2 12.5 7V3.5L6.5.5Z"
+                          fill="#0F766E"
+                          opacity=".15"
+                          stroke="#0F766E"
+                          stroke-width="1.2"
+                        />
+                        <path
+                          d="M4 7l2 2 3.5-3.5"
+                          stroke="#0F766E"
+                          stroke-width="1.3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <span
+                        class="trust-text"
+                        style="font-size: 12px; font-weight: 700"
+                        >Trust Score 98/100</span
+                      >
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 2px">
+                      <svg
+                        width="11"
+                        height="11"
+                        viewBox="0 0 11 11"
+                        fill="#F59E0B"
+                      >
+                        <path
+                          d="M5.5 0l1.3 3.9H10.9L7.3 6.4l1.3 3.9-3.1-2.3-3.1 2.3 1.3-3.9L.1 3.9h4.1z"
+                        />
+                      </svg>
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          color: #374151;
+                        "
+                        >4.9</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- Call driver -->
+                <div
+                  onclick="showToast('📞 Calling Arjun Mehta...')"
+                  style="
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    background: #f0fdf4;
+                    border: 1.5px solid #bbf7d0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    transition: background 0.15s;
+                    flex-shrink: 0;
+                  "
+                  onmouseover="this.style.background = '#DCFCE7'"
+                  onmouseout="this.style.background = '#F0FDF4'"
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M3 1h3l1.5 4-2 1.5c1 2 2.5 3.5 4.5 4.5L11.5 9 15 10.5V14c-6.6.7-12.8-5.5-12-12z"
+                      fill="#0F766E"
+                      opacity=".2"
+                      stroke="#0F766E"
+                      stroke-width="1.3"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Badge row -->
+              <div
+                class="scroll-x"
+                style="
+                  display: flex;
+                  gap: 6px;
+                  margin-bottom: 14px;
+                  padding-bottom: 2px;
+                "
+              >
+                <span
+                  class="badge-pill"
+                  style="
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 4px;
+                    padding: 4px 10px;
+                    background: #f0fdf4;
+                    border-radius: 999px;
+                    font-size: 10.5px;
+                    font-weight: 600;
+                    color: #15803d;
+                    border: 1px solid #bbf7d0;
+                    white-space: nowrap;
+                    flex-shrink: 0;
+                  "
+                >
+                  <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
+                    <circle cx="4.5" cy="4.5" r="4" fill="#16A34A" />
+                    <path
+                      d="M2.5 4.5l1.5 1.5 2.5-2.5"
+                      stroke="#fff"
+                      stroke-width="1.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  Verified
+                </span>
+                <span
+                  class="badge-pill"
+                  style="
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 4px;
+                    padding: 4px 10px;
+                    background: #eff6ff;
+                    border-radius: 999px;
+                    font-size: 10.5px;
+                    font-weight: 600;
+                    color: #1d4ed8;
+                    border: 1px solid #bfdbfe;
+                    white-space: nowrap;
+                    flex-shrink: 0;
+                  "
+                  >🔍 Background Checked</span
+                >
+                <span
+                  class="badge-pill"
+                  style="
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 4px;
+                    padding: 4px 10px;
+                    background: #fff7ed;
+                    border-radius: 999px;
+                    font-size: 10.5px;
+                    font-weight: 600;
+                    color: #c2410c;
+                    border: 1px solid #fed7aa;
+                    white-space: nowrap;
+                    flex-shrink: 0;
+                  "
+                  >🚫 Cancellation-free</span
+                >
+                <span
+                  class="badge-pill"
+                  style="
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 4px;
+                    padding: 4px 10px;
+                    background: #f5f3ff;
+                    border-radius: 999px;
+                    font-size: 10.5px;
+                    font-weight: 600;
+                    color: #6d28d9;
+                    border: 1px solid #ddd6fe;
+                    white-space: nowrap;
+                    flex-shrink: 0;
+                  "
+                  >⚡ ETA 4 min</span
+                >
+              </div>
+
+              <!-- Divider -->
+              <div
+                style="height: 1px; background: #f1f5f9; margin: 0 -16px 14px"
+              ></div>
+
+              <!-- Fare -->
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  margin-bottom: 10px;
+                "
+              >
+                <div style="display: flex; align-items: baseline; gap: 8px">
+                  <span
+                    style="
+                      font-size: 28px;
+                      font-weight: 800;
+                      color: #0f172a;
+                      letter-spacing: -1px;
+                    "
+                    >₹120</span
+                  >
+                  <span
+                    style="font-size: 11px; color: #64748b; font-weight: 500"
+                    >per ride · Fixed</span
+                  >
+                </div>
+                <span
+                  style="
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 4px;
+                    padding: 5px 10px;
+                    background: #f0fdf4;
+                    border-radius: 999px;
+                    font-size: 11px;
+                    font-weight: 700;
+                    color: #15803d;
+                    border: 1px solid #bbf7d0;
+                  "
+                >
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path
+                      d="M2 8l6-6M2 5h3V2"
+                      stroke="#15803D"
+                      stroke-width="1.3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  Save ₹45 vs. Ola
+                </span>
+              </div>
+
+              <!-- Guaranteed -->
+              <div class="guaranteed-banner" style="margin-bottom: 14px">
+                <span style="font-size: 16px">🛡</span>
+                <span
+                  style="font-size: 11.5px; font-weight: 600; color: #92400e"
+                  >Guaranteed ride or
+                  <span style="color: #d97706; font-weight: 700"
+                    >₹50 credit</span
+                  >
+                  if unavailable</span
+                >
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div
+              style="
+                padding: 0 16px 16px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+              "
+            >
+              <button
+                onclick="openBookingModal()"
+                class="btn-book ripple-wrap"
+                style="
+                  width: 100%;
+                  padding: 14px;
+                  border-radius: 12px;
+                  font-size: 15px;
+                  font-weight: 700;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 8px;
+                  box-shadow: 0 4px 14px rgba(15, 118, 110, 0.3);
+                "
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7z"
+                    stroke="#fff"
+                    stroke-width="1.4"
+                    fill="none"
+                  />
+                  <path
+                    d="M5.5 8l1.75 1.75L10.5 6"
+                    stroke="#fff"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                Book Ride
+              </button>
+              <button
+                onclick="showToast('🗺 Opening ride details...')"
+                class="view-details"
+                style="
+                  width: 100%;
+                  padding: 8px;
+                  border-radius: 10px;
+                  font-size: 13px;
+                  font-weight: 600;
+                  color: #0f766e;
+                  background: transparent;
+                  border: none;
+                  cursor: pointer;
+                "
+              >
+                View Details →
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIMILAR RIDES -->
+        <div style="padding: 0 16px 16px">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 12px;
+            "
+          >
+            <div
+              style="
+                font-size: 15px;
+                font-weight: 700;
+                color: #0f172a;
+                letter-spacing: -0.2px;
+              "
+            >
+              Similar Available Rides
+            </div>
+            <span
+              onclick="showToast('📋 Loading all rides...')"
+              style="
+                font-size: 12px;
+                font-weight: 600;
+                color: #0f766e;
+                cursor: pointer;
+              "
+              onmouseover="this.style.textDecoration = 'underline'"
+              onmouseout="this.style.textDecoration = 'none'"
+              >See all</span
+            >
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+            <!-- Ravi -->
+            <div
+              class="similar-card"
+              style="
+                background: #fff;
+                border-radius: 14px;
+                padding: 14px;
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+                border: 1px solid #f1f5f9;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  text-align: center;
+                "
+              >
+                <div style="position: relative; margin-bottom: 8px">
+                  <div
+                    class="avatar-ravi"
+                    style="
+                      width: 44px;
+                      height: 44px;
+                      border-radius: 50%;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                    "
+                  >
+                    <span style="font-size: 17px; font-weight: 700; color: #fff"
+                      >R</span
+                    >
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      bottom: 0;
+                      right: 0;
+                      width: 11px;
+                      height: 11px;
+                      background: #22c55e;
+                      border-radius: 50%;
+                      border: 2px solid #fff;
+                    "
+                  ></div>
+                </div>
+                <div
+                  style="
+                    font-weight: 700;
+                    font-size: 13px;
+                    color: #0f172a;
+                    margin-bottom: 2px;
+                  "
+                >
+                  Ravi Kumar
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 3px;
+                    margin-bottom: 2px;
+                  "
+                >
+                  <svg width="10" height="11" viewBox="0 0 10 11" fill="none">
+                    <path
+                      d="M5 .5L.5 3V6.5C.5 8.9 2.5 11 5 11.5 7.5 11 9.5 8.9 9.5 6.5V3L5 .5Z"
+                      fill="#0F766E"
+                      opacity=".15"
+                      stroke="#0F766E"
+                      stroke-width="1"
+                    />
+                    <path
+                      d="M3 6.5l1.5 1.5 2.5-2.5"
+                      stroke="#0F766E"
+                      stroke-width="1.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span
+                    style="font-size: 10.5px; font-weight: 700; color: #0f766e"
+                    >95/100</span
+                  >
+                </div>
+                <div
+                  style="
+                    font-size: 10px;
+                    color: #94a3b8;
+                    font-weight: 500;
+                    margin-bottom: 6px;
+                  "
+                >
+                  ⚡ ETA 7 min
+                </div>
+                <div
+                  style="
+                    font-size: 18px;
+                    font-weight: 800;
+                    color: #0f172a;
+                    letter-spacing: -0.5px;
+                    margin-bottom: 8px;
+                  "
+                >
+                  ₹110
+                </div>
+                <button
+                  onclick="showToast('✅ Ride with Ravi booked!')"
+                  class="btn-outline"
+                  style="
+                    width: 100%;
+                    padding: 7px 0;
+                    border-radius: 8px;
+                    font-size: 12px;
+                    font-weight: 700;
+                    cursor: pointer;
+                  "
+                >
+                  Book
+                </button>
+              </div>
+            </div>
+            <!-- Priya -->
+            <div
+              class="similar-card"
+              style="
+                background: #fff;
+                border-radius: 14px;
+                padding: 14px;
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+                border: 1px solid #f1f5f9;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  text-align: center;
+                "
+              >
+                <div style="position: relative; margin-bottom: 8px">
+                  <div
+                    class="avatar-priya"
+                    style="
+                      width: 44px;
+                      height: 44px;
+                      border-radius: 50%;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                    "
+                  >
+                    <span style="font-size: 17px; font-weight: 700; color: #fff"
+                      >P</span
+                    >
+                  </div>
+                  <div
+                    style="
+                      position: absolute;
+                      bottom: 0;
+                      right: 0;
+                      width: 11px;
+                      height: 11px;
+                      background: #22c55e;
+                      border-radius: 50%;
+                      border: 2px solid #fff;
+                    "
+                  ></div>
+                </div>
+                <div
+                  style="
+                    font-weight: 700;
+                    font-size: 13px;
+                    color: #0f172a;
+                    margin-bottom: 2px;
+                  "
+                >
+                  Priya Sharma
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 3px;
+                    margin-bottom: 2px;
+                  "
+                >
+                  <svg width="10" height="11" viewBox="0 0 10 11" fill="none">
+                    <path
+                      d="M5 .5L.5 3V6.5C.5 8.9 2.5 11 5 11.5 7.5 11 9.5 8.9 9.5 6.5V3L5 .5Z"
+                      fill="#0F766E"
+                      opacity=".15"
+                      stroke="#0F766E"
+                      stroke-width="1"
+                    />
+                    <path
+                      d="M3 6.5l1.5 1.5 2.5-2.5"
+                      stroke="#0F766E"
+                      stroke-width="1.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span
+                    style="font-size: 10.5px; font-weight: 700; color: #0f766e"
+                    >97/100</span
+                  >
+                </div>
+                <div
+                  style="
+                    font-size: 10px;
+                    color: #94a3b8;
+                    font-weight: 500;
+                    margin-bottom: 6px;
+                  "
+                >
+                  ⚡ ETA 5 min
+                </div>
+                <div
+                  style="
+                    font-size: 18px;
+                    font-weight: 800;
+                    color: #0f172a;
+                    letter-spacing: -0.5px;
+                    margin-bottom: 8px;
+                  "
+                >
+                  ₹130
+                </div>
+                <button
+                  onclick="showToast('✅ Ride with Priya booked!')"
+                  class="btn-outline"
+                  style="
+                    width: 100%;
+                    padding: 7px 0;
+                    border-radius: 8px;
+                    font-size: 12px;
+                    font-weight: 700;
+                    cursor: pointer;
+                  "
+                >
+                  Book
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRUST & SAFETY TILE -->
+        <div
+          style="
+            margin: 0 16px 16px;
+            padding: 14px;
+            background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+            border-radius: 16px;
+            border: 1px solid #bbf7d0;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 12px;
+            "
+          >
+            <div style="display: flex; align-items: center; gap: 6px">
+              <svg width="14" height="16" viewBox="0 0 14 16" fill="none">
+                <path
+                  d="M7 .5L.5 3.5V8C.5 11.5 3.4 14.8 7 16 10.6 14.8 13.5 11.5 13.5 8V3.5L7 .5Z"
+                  fill="#0F766E"
+                  opacity=".2"
+                  stroke="#0F766E"
+                  stroke-width="1.3"
+                />
+                <path
+                  d="M4 8.5l2 2 4-4"
+                  stroke="#0F766E"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span
+                style="
+                  font-size: 12px;
+                  font-weight: 700;
+                  color: #0f766e;
+                  letter-spacing: 0.04em;
+                  text-transform: uppercase;
+                "
+                >Safety Toolkit</span
+              >
+            </div>
+            <div
+              onclick="openSafetyModal()"
+              style="
+                font-size: 11px;
+                font-weight: 600;
+                color: #0f766e;
+                cursor: pointer;
+              "
+              onmouseover="this.style.textDecoration = 'underline'"
+              onmouseout="this.style.textDecoration = 'none'"
+            >
+              Manage ›
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px">
+            <div
+              class="safety-chip"
+              onclick="showToast('📞 Opening emergency contacts...')"
+              style="
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+                padding: 10px 6px;
+                background: rgba(255, 255, 255, 0.75);
+                border-radius: 12px;
+                border: 1px solid rgba(15, 118, 110, 0.12);
+              "
+            >
+              <span style="font-size: 20px">📞</span>
+              <span
+                style="
+                  font-size: 10px;
+                  font-weight: 600;
+                  color: #0f172a;
+                  text-align: center;
+                  line-height: 1.3;
+                "
+                >Emergency<br />Contacts</span
+              >
+            </div>
+            <div
+              class="safety-chip"
+              onclick="showToast('📍 Starting live tracking...')"
+              style="
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+                padding: 10px 6px;
+                background: rgba(255, 255, 255, 0.75);
+                border-radius: 12px;
+                border: 1px solid rgba(15, 118, 110, 0.12);
+              "
+            >
+              <span style="font-size: 20px">📍</span>
+              <span
+                style="
+                  font-size: 10px;
+                  font-weight: 600;
+                  color: #0f172a;
+                  text-align: center;
+                  line-height: 1.3;
+                "
+                >Live<br />Tracking</span
+              >
+            </div>
+            <div
+              class="safety-chip"
+              onclick="openSafetyModal()"
+              style="
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+                padding: 10px 6px;
+                background: rgba(255, 255, 255, 0.75);
+                border-radius: 12px;
+                border: 1px solid rgba(15, 118, 110, 0.12);
+              "
+            >
+              <span style="font-size: 20px">🛡</span>
+              <span
+                style="
+                  font-size: 10px;
+                  font-weight: 600;
+                  color: #0f172a;
+                  text-align: center;
+                  line-height: 1.3;
+                "
+                >Safety<br />Toolkit</span
+              >
+            </div>
+            <div
+              class="safety-chip"
+              onclick="showToast('🚨 SOS alert sent to emergency contacts!')"
+              style="
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+                padding: 10px 6px;
+                background: rgba(239, 68, 68, 0.08);
+                border-radius: 12px;
+                border: 1px solid rgba(239, 68, 68, 0.2);
+              "
+            >
+              <span style="font-size: 20px">🚨</span>
+              <span
+                style="
+                  font-size: 10px;
+                  font-weight: 600;
+                  color: #dc2626;
+                  text-align: center;
+                  line-height: 1.3;
+                "
+                >SOS<br />Alert</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- REFERRAL SECTION — simple -->
+        <div style="padding: 0 16px 16px">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 10px;
+            "
+          >
+            <div style="font-size: 15px; font-weight: 700; color: #0f172a">
+              🎁 Refer &amp; Earn
+            </div>
+            <span
+              onclick="showToast('📊 Loading referral history...')"
+              style="
+                font-size: 12px;
+                font-weight: 600;
+                color: #0f766e;
+                cursor: pointer;
+              "
+              onmouseover="this.style.textDecoration = 'underline'"
+              onmouseout="this.style.textDecoration = 'none'"
+              >History ›</span
+            >
+          </div>
+
+          <div class="ref-simple">
+            <!-- Top: tagline + reward pill -->
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 12px;
+              "
+            >
+              <div>
+                <div
+                  style="
+                    font-size: 14px;
+                    font-weight: 700;
+                    color: #0f172a;
+                    line-height: 1.3;
+                  "
+                >
+                  Invite friends,<br />earn together
+                </div>
+                <div style="font-size: 11.5px; color: #64748b; margin-top: 2px">
+                  Each friend = ₹50 for you &amp; them
+                </div>
+              </div>
+              <div
+                style="
+                  background: #f0fdf4;
+                  border: 1.5px solid #6ee7b7;
+                  border-radius: 14px;
+                  padding: 10px 14px;
+                  text-align: center;
+                  flex-shrink: 0;
+                "
+              >
+                <div style="font-size: 20px; font-weight: 800; color: #0f766e">
+                  ₹50
+                </div>
+                <div
+                  style="
+                    font-size: 9.5px;
+                    color: #16a34a;
+                    font-weight: 600;
+                    margin-top: 1px;
+                  "
+                >
+                  per friend
+                </div>
+              </div>
+            </div>
+
+            <!-- Code row -->
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                background: #f8fafc;
+                border: 1.5px dashed #cbd5e1;
+                border-radius: 12px;
+                padding: 10px 14px;
+                margin-bottom: 12px;
+              "
+            >
+              <span
+                style="
+                  font-size: 17px;
+                  font-weight: 800;
+                  color: #0f172a;
+                  letter-spacing: 2.5px;
+                  flex: 1;
+                "
+                id="referralCode"
+                >NIKHIL50</span
+              >
+              <button
+                onclick="copyCode()"
+                style="
+                  padding: 6px 14px;
+                  background: #0f766e;
+                  color: #fff;
+                  border: none;
+                  border-radius: 8px;
+                  font-size: 12px;
+                  font-weight: 700;
+                  cursor: pointer;
+                  transition: background 0.15s;
+                  white-space: nowrap;
+                "
+                onmouseover="this.style.background = '#0D6560'"
+                onmouseout="this.style.background = '#0F766E'"
+              >
+                <span id="copyLabel">Copy code</span>
+              </button>
+            </div>
+
+            <!-- Stats row -->
+            <div style="display: flex; gap: 8px; margin-bottom: 12px">
+              <div
+                style="
+                  flex: 1;
+                  text-align: center;
+                  padding: 8px;
+                  background: #f8fafc;
+                  border-radius: 10px;
+                "
+              >
+                <div style="font-size: 16px; font-weight: 800; color: #0f172a">
+                  4
+                </div>
+                <div
+                  style="
+                    font-size: 10px;
+                    color: #64748b;
+                    font-weight: 500;
+                    margin-top: 1px;
+                  "
+                >
+                  Referred
+                </div>
+              </div>
+              <div
+                style="
+                  flex: 1;
+                  text-align: center;
+                  padding: 8px;
+                  background: #f0fdf4;
+                  border-radius: 10px;
+                "
+              >
+                <div style="font-size: 16px; font-weight: 800; color: #0f766e">
+                  ₹200
+                </div>
+                <div
+                  style="
+                    font-size: 10px;
+                    color: #16a34a;
+                    font-weight: 500;
+                    margin-top: 1px;
+                  "
+                >
+                  Earned
+                </div>
+              </div>
+              <div
+                style="
+                  flex: 1;
+                  text-align: center;
+                  padding: 8px;
+                  background: #fef3c7;
+                  border-radius: 10px;
+                "
+              >
+                <div style="font-size: 16px; font-weight: 800; color: #d97706">
+                  ₹50
+                </div>
+                <div
+                  style="
+                    font-size: 10px;
+                    color: #92400e;
+                    font-weight: 500;
+                    margin-top: 1px;
+                  "
+                >
+                  Pending
+                </div>
+              </div>
+            </div>
+
+            <!-- Progress bar -->
+            <div style="margin-bottom: 12px">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-bottom: 5px;
+                "
+              >
+                <span style="font-size: 11px; color: #64748b; font-weight: 500"
+                  >1 more friend = unlock ₹100 bonus</span
+                >
+                <span style="font-size: 11px; font-weight: 700; color: #0f766e"
+                  >4 / 5</span
+                >
+              </div>
+              <div
+                style="
+                  background: #e2e8f0;
+                  border-radius: 99px;
+                  height: 5px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  class="progress-bar"
+                  style="
+                    height: 100%;
+                    width: 80%;
+                    background: #0f766e;
+                    border-radius: 99px;
+                  "
+                ></div>
+              </div>
+            </div>
+
+            <!-- Share buttons -->
+            <div style="display: flex; gap: 8px">
+              <button
+                onclick="showToast('📱 Opening WhatsApp...')"
+                style="
+                  flex: 1;
+                  padding: 9px 0;
+                  border-radius: 10px;
+                  background: #f0fdf4;
+                  border: 1.5px solid #6ee7b7;
+                  color: #15803d;
+                  font-size: 12px;
+                  font-weight: 700;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 5px;
+                  transition: background 0.14s;
+                "
+                onmouseover="this.style.background = '#DCFCE7'"
+                onmouseout="this.style.background = '#F0FDF4'"
+              >
+                📱 WhatsApp
+              </button>
+              <button
+                onclick="copyCode()"
+                style="
+                  flex: 1;
+                  padding: 9px 0;
+                  border-radius: 10px;
+                  background: #f8fafc;
+                  border: 1.5px solid #e2e8f0;
+                  color: #374151;
+                  font-size: 12px;
+                  font-weight: 700;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 5px;
+                  transition: background 0.14s;
+                "
+                onmouseover="this.style.background = '#F1F5F9'"
+                onmouseout="this.style.background = '#F8FAFC'"
+              >
+                🔗 Copy Link
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spacer for tab bar -->
+        <div style="height: 72px"></div>
+
+        <!-- BOTTOM TAB BAR -->
+        <div
+          id="tabBar"
+          style="
+            position: sticky;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            box-shadow:
+              0 -1px 0 rgba(0, 0, 0, 0.06),
+              0 -4px 20px rgba(0, 0, 0, 0.07);
+            padding: 8px 0 14px;
+            z-index: 50;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-around;
+            "
+          >
+            <!-- Home -->
+            <div
+              class="tab-item"
+              data-tab="0"
+              onclick="switchTab(0)"
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 3px;
+                min-width: 52px;
+              "
+            >
+              <div
+                style="
+                  width: 32px;
+                  height: 32px;
+                  border-radius: 10px;
+                  background: rgba(15, 118, 110, 0.1);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <svg width="16" height="17" viewBox="0 0 16 17" fill="none">
+                  <path
+                    d="M1 7L8 1l7 6v9H10v-5H6v5H1V7z"
+                    fill="#0F766E"
+                    stroke="#0F766E"
+                    stroke-width="1.2"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <span style="font-size: 10px; font-weight: 700; color: #0f766e"
+                >Home</span
+              >
+            </div>
+            <!-- Rides -->
+            <div
+              class="tab-item"
+              data-tab="1"
+              onclick="switchTab(1)"
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 3px;
+                min-width: 52px;
+              "
+            >
+              <div
+                style="
+                  width: 32px;
+                  height: 32px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
+                  <rect
+                    x=".7"
+                    y="4"
+                    width="18.6"
+                    height="8.5"
+                    rx="2.5"
+                    stroke="#94A3B8"
+                    stroke-width="1.4"
+                    fill="none"
+                  />
+                  <circle cx="5" cy="12.5" r="1.5" fill="#94A3B8" />
+                  <circle cx="15" cy="12.5" r="1.5" fill="#94A3B8" />
+                  <path d="M.7 8h18.6" stroke="#94A3B8" stroke-width="1.2" />
+                  <path
+                    d="M4 4L6 1h8l2 3"
+                    stroke="#94A3B8"
+                    stroke-width="1.3"
+                    stroke-linejoin="round"
+                    fill="none"
+                  />
+                </svg>
+              </div>
+              <span style="font-size: 10px; font-weight: 500; color: #94a3b8"
+                >Rides</span
+              >
+            </div>
+            <!-- Community -->
+            <div
+              class="tab-item"
+              data-tab="2"
+              onclick="switchTab(2)"
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 3px;
+                min-width: 52px;
+              "
+            >
+              <div
+                style="
+                  width: 32px;
+                  height: 32px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <svg width="18" height="16" viewBox="0 0 18 16" fill="none">
+                  <circle
+                    cx="6"
+                    cy="5"
+                    r="3"
+                    stroke="#94A3B8"
+                    stroke-width="1.4"
+                    fill="none"
+                  />
+                  <circle
+                    cx="13"
+                    cy="5"
+                    r="2.5"
+                    stroke="#94A3B8"
+                    stroke-width="1.3"
+                    fill="none"
+                  />
+                  <path
+                    d="M.5 15.5C.5 12.19 3.19 9.5 6.5 9.5S12.5 12.19 12.5 15.5"
+                    stroke="#94A3B8"
+                    stroke-width="1.4"
+                    fill="none"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M13 9.5c1.93 0 3.5 1.57 3.5 3.5"
+                    stroke="#94A3B8"
+                    stroke-width="1.3"
+                    fill="none"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <span style="font-size: 10px; font-weight: 500; color: #94a3b8"
+                >Community</span
+              >
+            </div>
+            <!-- Savings -->
+            <div
+              class="tab-item"
+              data-tab="3"
+              onclick="switchTab(3)"
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 3px;
+                min-width: 52px;
+              "
+            >
+              <div
+                style="
+                  width: 32px;
+                  height: 32px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path
+                    d="M3 9a6 6 0 1012 0A6 6 0 003 9z"
+                    stroke="#94A3B8"
+                    stroke-width="1.3"
+                    fill="none"
+                  />
+                  <path
+                    d="M9 6.5v1m0 4v1M7 9c0-.83.67-1.5 1.5-1.5h1.25a1 1 0 010 2H8.5a1 1 0 000 2H10"
+                    stroke="#94A3B8"
+                    stroke-width="1.2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <span style="font-size: 10px; font-weight: 500; color: #94a3b8"
+                >Savings</span
+              >
+            </div>
+            <!-- Profile -->
+            <div
+              class="tab-item"
+              data-tab="4"
+              onclick="switchTab(4)"
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 3px;
+                min-width: 52px;
+              "
+            >
+              <div
+                style="
+                  width: 32px;
+                  height: 32px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <svg width="16" height="18" viewBox="0 0 16 18" fill="none">
+                  <circle
+                    cx="8"
+                    cy="5.5"
+                    r="3.5"
+                    stroke="#94A3B8"
+                    stroke-width="1.4"
+                    fill="none"
+                  />
+                  <path
+                    d="M1 17c0-3.87 3.13-7 7-7s7 3.13 7 7"
+                    stroke="#94A3B8"
+                    stroke-width="1.4"
+                    fill="none"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <span style="font-size: 10px; font-weight: 500; color: #94a3b8"
+                >Profile</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /phone-inner -->
+    </div>
+    <!-- /phone-frame -->
+
+    <!-- ══════════ ADDRESS MODAL ══════════ -->
+    <div id="addressModal" onclick="closeOnBackdrop(event, 'addressModal')">
+      <div class="modal-sheet">
+        <!-- Handle -->
+        <div style="display: flex; justify-content: center; padding: 12px 0 0">
+          <div
+            style="
+              width: 40px;
+              height: 4px;
+              background: #e2e8f0;
+              border-radius: 99px;
+            "
+          ></div>
+        </div>
+        <div style="padding: 14px 20px 0">
+          <!-- Header -->
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 14px;
+            "
+          >
+            <div
+              id="addrModalTitle"
+              style="font-size: 16px; font-weight: 700; color: #0f172a"
+            >
+              Change Pickup
+            </div>
+            <button
+              onclick="closeModal('addressModal')"
+              style="
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                background: #f1f5f9;
+                border: none;
+                cursor: pointer;
+                font-size: 15px;
+                color: #64748b;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              ✕
+            </button>
+          </div>
+
+          <!-- Input -->
+          <div style="position: relative; margin-bottom: 14px">
+            <div
+              style="
+                position: absolute;
+                left: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+              "
+            >
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <circle
+                  cx="7"
+                  cy="7"
+                  r="5"
+                  stroke="#94A3B8"
+                  stroke-width="1.5"
+                  fill="none"
+                />
+                <path
+                  d="M11 11l3 3"
+                  stroke="#94A3B8"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <input
+              id="addrInput"
+              class="addr-input"
+              type="text"
+              placeholder="Search location…"
+              style="padding-left: 36px"
+              oninput="filterSuggestions(this.value)"
+            />
+          </div>
+
+          <!-- Recent / Suggestions label -->
+          <div
+            style="
+              font-size: 10px;
+              font-weight: 700;
+              color: #94a3b8;
+              letter-spacing: 0.07em;
+              text-transform: uppercase;
+              margin-bottom: 6px;
+            "
+            id="addrSuggestLabel"
+          >
+            Recent locations
+          </div>
+
+          <!-- Suggestion list -->
+          <div
+            id="addrSuggestions"
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 2px;
+              max-height: 260px;
+              overflow-y: auto;
+              padding-bottom: 8px;
+            "
+          >
+            <!-- populated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ BOOKING MODAL ══════════ -->
+    <div id="bookingModal" onclick="closeOnBackdrop(event, 'bookingModal')">
+      <div class="modal-sheet">
+        <!-- Handle -->
+        <div style="display: flex; justify-content: center; padding: 12px 0 0">
+          <div
+            style="
+              width: 40px;
+              height: 4px;
+              background: #e2e8f0;
+              border-radius: 99px;
+            "
+          ></div>
+        </div>
+
+        <div style="padding: 16px 20px">
+          <!-- Header -->
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 16px;
+            "
+          >
+            <div
+              style="
+                font-size: 17px;
+                font-weight: 700;
+                color: #0f172a;
+                letter-spacing: -0.3px;
+              "
+            >
+              Confirm Booking
+            </div>
+            <button
+              onclick="closeModal('bookingModal')"
+              style="
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background: #f1f5f9;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 16px;
+                color: #64748b;
+              "
+            >
+              ✕
+            </button>
+          </div>
+
+          <!-- Route summary -->
+          <div
+            style="
+              background: #f8fafc;
+              border-radius: 12px;
+              padding: 12px;
+              margin-bottom: 14px;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 8px;
+              "
+            >
+              <div
+                style="
+                  width: 8px;
+                  height: 8px;
+                  background: #3b82f6;
+                  border-radius: 50%;
+                  flex-shrink: 0;
+                "
+              ></div>
+              <span style="font-size: 13px; font-weight: 500; color: #0f172a"
+                >Office Street, Sector 62</span
+              >
+            </div>
+            <div
+              style="
+                border-left: 2px dashed #cbd5e1;
+                height: 12px;
+                margin-left: 3px;
+              "
+            ></div>
+            <div style="display: flex; align-items: center; gap: 8px">
+              <div
+                style="
+                  width: 8px;
+                  height: 8px;
+                  background: #ef4444;
+                  border-radius: 50%;
+                  flex-shrink: 0;
+                "
+              ></div>
+              <span style="font-size: 13px; font-weight: 500; color: #0f172a"
+                >Cyber City, Gurugram</span
+              >
+            </div>
+          </div>
+
+          <!-- Driver summary -->
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              background: #f0fdf4;
+              border: 1px solid #bbf7d0;
+              border-radius: 12px;
+              padding: 12px;
+              margin-bottom: 14px;
+            "
+          >
+            <div
+              class="avatar-driver"
+              style="
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+              "
+            >
+              <span style="font-size: 16px; font-weight: 700; color: #fff"
+                >A</span
+              >
+            </div>
+            <div style="flex: 1">
+              <div style="font-weight: 700; font-size: 14px; color: #0f172a">
+                Arjun Mehta
+              </div>
+              <div style="font-size: 11px; color: #64748b">
+                DL 4C AB 1234 · Trust 98/100
+              </div>
+            </div>
+            <div style="text-align: right">
+              <div style="font-size: 16px; font-weight: 800; color: #0f172a">
+                ₹120
+              </div>
+              <div style="font-size: 10px; color: #16a34a; font-weight: 600">
+                Fixed fare
+              </div>
+            </div>
+          </div>
+
+          <!-- Schedule -->
+          <div style="margin-bottom: 14px">
+            <div
+              style="
+                font-size: 12px;
+                font-weight: 600;
+                color: #64748b;
+                margin-bottom: 8px;
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+              "
+            >
+              Schedule
+            </div>
+            <div style="display: flex; gap: 8px">
+              <div
+                id="scheduleNow"
+                onclick="selectSchedule('now')"
+                style="
+                  flex: 1;
+                  padding: 10px;
+                  border-radius: 10px;
+                  border: 2px solid #0f766e;
+                  background: #f0fdf4;
+                  text-align: center;
+                  cursor: pointer;
+                  transition: all 0.15s;
+                "
+              >
+                <div style="font-size: 12px; font-weight: 700; color: #0f766e">
+                  Now
+                </div>
+                <div style="font-size: 10px; color: #64748b; margin-top: 1px">
+                  ~4 min pickup
+                </div>
+              </div>
+              <div
+                id="scheduleLater"
+                onclick="selectSchedule('later')"
+                style="
+                  flex: 1;
+                  padding: 10px;
+                  border-radius: 10px;
+                  border: 2px solid #e2e8f0;
+                  background: #fff;
+                  text-align: center;
+                  cursor: pointer;
+                  transition: all 0.15s;
+                "
+              >
+                <div style="font-size: 12px; font-weight: 700; color: #374151">
+                  8:30 AM
+                </div>
+                <div style="font-size: 10px; color: #64748b; margin-top: 1px">
+                  Daily schedule
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment method -->
+          <div style="margin-bottom: 20px">
+            <div
+              style="
+                font-size: 12px;
+                font-weight: 600;
+                color: #64748b;
+                margin-bottom: 8px;
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+              "
+            >
+              Payment
+            </div>
+            <div style="display: flex; gap: 8px">
+              <div
+                id="payUPI"
+                onclick="selectPayment('upi')"
+                style="
+                  flex: 1;
+                  padding: 9px;
+                  border-radius: 10px;
+                  border: 2px solid #0f766e;
+                  background: #f0fdf4;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 5px;
+                  cursor: pointer;
+                  transition: all 0.15s;
+                "
+              >
+                <span style="font-size: 16px">💳</span>
+                <span style="font-size: 12px; font-weight: 700; color: #0f766e"
+                  >UPI</span
+                >
+              </div>
+              <div
+                id="payCash"
+                onclick="selectPayment('cash')"
+                style="
+                  flex: 1;
+                  padding: 9px;
+                  border-radius: 10px;
+                  border: 2px solid #e2e8f0;
+                  background: #fff;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 5px;
+                  cursor: pointer;
+                  transition: all 0.15s;
+                "
+              >
+                <span style="font-size: 16px">💵</span>
+                <span style="font-size: 12px; font-weight: 700; color: #374151"
+                  >Cash</span
+                >
+              </div>
+              <div
+                id="payWallet"
+                onclick="selectPayment('wallet')"
+                style="
+                  flex: 1;
+                  padding: 9px;
+                  border-radius: 10px;
+                  border: 2px solid #e2e8f0;
+                  background: #fff;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 5px;
+                  cursor: pointer;
+                  transition: all 0.15s;
+                "
+              >
+                <span style="font-size: 16px">👜</span>
+                <span style="font-size: 12px; font-weight: 700; color: #374151"
+                  >Wallet</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Confirm button -->
+          <button
+            onclick="confirmBooking()"
+            class="btn-book ripple-wrap"
+            style="
+              width: 100%;
+              padding: 15px;
+              border-radius: 12px;
+              font-size: 16px;
+              font-weight: 700;
+              cursor: pointer;
+              box-shadow: 0 4px 16px rgba(15, 118, 110, 0.3);
+            "
+          >
+            Confirm & Book — ₹120
+          </button>
+
+          <!-- Guarantee note -->
+          <div
+            style="
+              text-align: center;
+              margin-top: 10px;
+              font-size: 11px;
+              color: #64748b;
+            "
+          >
+            🛡 Protected by Guaranteed Ride — ₹50 credit if cancelled
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ SAFETY MODAL ══════════ -->
+    <div id="safetyModal" onclick="closeOnBackdrop(event, 'safetyModal')">
+      <div class="modal-sheet" style="padding-bottom: 24px">
+        <div style="display: flex; justify-content: center; padding: 12px 0 0">
+          <div
+            style="
+              width: 40px;
+              height: 4px;
+              background: #e2e8f0;
+              border-radius: 99px;
+            "
+          ></div>
+        </div>
+        <div style="padding: 16px 20px">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 16px;
+            "
+          >
+            <div style="font-size: 17px; font-weight: 700; color: #0f172a">
+              Safety Toolkit
+            </div>
+            <button
+              onclick="closeModal('safetyModal')"
+              style="
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background: #f1f5f9;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 16px;
+                color: #64748b;
+              "
+            >
+              ✕
+            </button>
+          </div>
+
+          <!-- Safety items -->
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <div
+              onclick="
+                showToast('📞 Opening emergency contacts editor...');
+                closeModal('safetyModal');
+              "
+              class="safety-chip"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 14px;
+                background: #fff1f2;
+                border: 1px solid #fecdd3;
+                border-radius: 12px;
+              "
+            >
+              <span style="font-size: 24px">📞</span>
+              <div>
+                <div style="font-weight: 600; font-size: 14px; color: #0f172a">
+                  Emergency Contacts
+                </div>
+                <div style="font-size: 12px; color: #64748b; margin-top: 1px">
+                  2 contacts saved · Notified on SOS
+                </div>
+              </div>
+              <div style="margin-left: auto; color: #94a3b8; font-size: 16px">
+                ›
+              </div>
+            </div>
+            <div
+              onclick="
+                showToast('📍 Live location shared with contacts');
+                closeModal('safetyModal');
+              "
+              class="safety-chip"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 14px;
+                background: #eff6ff;
+                border: 1px solid #bfdbfe;
+                border-radius: 12px;
+              "
+            >
+              <span style="font-size: 24px">📍</span>
+              <div>
+                <div style="font-weight: 600; font-size: 14px; color: #0f172a">
+                  Live Ride Tracking
+                </div>
+                <div style="font-size: 12px; color: #64748b; margin-top: 1px">
+                  Share real-time location · Auto-expires
+                </div>
+              </div>
+              <div style="margin-left: auto; color: #94a3b8; font-size: 16px">
+                ›
+              </div>
+            </div>
+            <div
+              onclick="
+                showToast('🔍 Opening ride audit log...');
+                closeModal('safetyModal');
+              "
+              class="safety-chip"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 14px;
+                background: #f5f3ff;
+                border: 1px solid #ddd6fe;
+                border-radius: 12px;
+              "
+            >
+              <span style="font-size: 24px">📋</span>
+              <div>
+                <div style="font-weight: 600; font-size: 14px; color: #0f172a">
+                  Ride History & Audit Log
+                </div>
+                <div style="font-size: 12px; color: #64748b; margin-top: 1px">
+                  Full trip records · Tamper-proof
+                </div>
+              </div>
+              <div style="margin-left: auto; color: #94a3b8; font-size: 16px">
+                ›
+              </div>
+            </div>
+            <div
+              onclick="
+                showToast('🚨 SOS sent to emergency contacts!');
+                closeModal('safetyModal');
+              "
+              style="
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 14px;
+                background: linear-gradient(135deg, #fef2f2, #fecdd3);
+                border: 1px solid #fca5a5;
+                border-radius: 12px;
+                cursor: pointer;
+                transition: transform 0.12s;
+              "
+              onmouseover="this.style.transform = 'scale(1.02)'"
+              onmouseout="this.style.transform = 'scale(1)'"
+            >
+              <span style="font-size: 24px">🚨</span>
+              <div>
+                <div style="font-weight: 700; font-size: 14px; color: #dc2626">
+                  SOS Emergency Alert
+                </div>
+                <div style="font-size: 12px; color: #ef4444; margin-top: 1px">
+                  Immediately alert contacts + Varadhi team
+                </div>
+              </div>
+              <div style="margin-left: auto; color: #ef4444; font-size: 16px">
+                ›
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ TOAST ══════════ -->
+    <div id="toast">
+      <span id="toastIcon">✅</span>
+      <span id="toastMsg">Action complete</span>
+    </div>
+
+    <script>
+      /* ── Live clock ── */
+      function updateClock() {
+        const now = new Date();
+        let h = now.getHours(),
+          m = now.getMinutes();
+        const ampm = h >= 12 ? "PM" : "AM";
+        h = h % 12 || 12;
+        document.getElementById("clockDisplay").textContent =
+          h + ":" + String(m).padStart(2, "0");
+      }
+      updateClock();
+      setInterval(updateClock, 30000);
+
+      /* ── Toast ── */
+      let toastTimer;
+
+      function showToast(msg) {
+        clearTimeout(toastTimer);
+        const toast = document.getElementById("toast");
+        document.getElementById("toastMsg").textContent = msg;
+        toast.classList.add("show");
+        toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
+      }
+
+      /* ── Toggle ── */
+      document
+        .getElementById("dailyToggle")
+        .addEventListener("change", function () {
+          const label = document.getElementById("repeatText");
+          const sub = document.getElementById("repeatLabel");
+          if (this.checked) {
+            label.textContent = "Repeat Daily";
+            label.style.color = "#0F766E";
+            sub.textContent = "Mon–Fri · 8:30 AM";
+            showToast("🔁 Daily repeat ride enabled");
+          } else {
+            label.textContent = "Daily Off";
+            label.style.color = "#94A3B8";
+            sub.textContent = "One-time booking";
+            showToast("⏸ Daily repeat turned off");
+          }
+        });
+
+      /* ── Address modal ── */
+      const allLocations = [
+        /* ── Saved ── */
+        {
+          icon: "🏢",
+          label: "Office Street, Sector 62",
+          sub: "Noida · Saved",
+          cat: "saved",
+        },
+        {
+          icon: "🏠",
+          label: "Home — Vasant Kunj",
+          sub: "New Delhi · Saved",
+          cat: "saved",
+        },
+        {
+          icon: "📍",
+          label: "Cyber City, Gurugram",
+          sub: "Haryana · Saved",
+          cat: "saved",
+        },
+
+        /* ── Delhi NCR ── */
+        {
+          icon: "✈️",
+          label: "IGI Airport Terminal 1",
+          sub: "New Delhi · Airport",
+        },
+        {
+          icon: "✈️",
+          label: "IGI Airport Terminal 2",
+          sub: "New Delhi · Airport",
+        },
+        {
+          icon: "✈️",
+          label: "IGI Airport Terminal 3",
+          sub: "New Delhi · Airport",
+        },
+        {
+          icon: "🚉",
+          label: "New Delhi Railway Station",
+          sub: "Paharganj, New Delhi",
+        },
+        {
+          icon: "🚉",
+          label: "Hazrat Nizamuddin Railway Station",
+          sub: "New Delhi",
+        },
+        {
+          icon: "🚇",
+          label: "Rajiv Chowk Metro",
+          sub: "Connaught Place, New Delhi",
+        },
+        {
+          icon: "🚇",
+          label: "HUDA City Centre Metro",
+          sub: "Gurugram, Haryana",
+        },
+        {
+          icon: "🚇",
+          label: "Noida City Centre Metro",
+          sub: "Sector 32, Noida",
+        },
+        {
+          icon: "🚇",
+          label: "Noida Electronic City Metro",
+          sub: "Sector 62, Noida",
+        },
+        {
+          icon: "🚇",
+          label: "Botanical Garden Metro",
+          sub: "Sector 37, Noida",
+        },
+        {
+          icon: "🏢",
+          label: "Connaught Place",
+          sub: "Central Delhi",
+        },
+        {
+          icon: "🏢",
+          label: "Nehru Place",
+          sub: "South Delhi · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Okhla Industrial Area Phase-III",
+          sub: "South Delhi · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "DLF Cyber Hub",
+          sub: "Gurugram, Haryana · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "DLF CyberCity Phase II",
+          sub: "Gurugram, Haryana · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Udyog Vihar Phase IV",
+          sub: "Gurugram, Haryana",
+        },
+        {
+          icon: "🏢",
+          label: "Sector 44, Gurugram",
+          sub: "Gurugram, Haryana",
+        },
+        {
+          icon: "🏢",
+          label: "Sector 135, Noida",
+          sub: "IT & Corporate Hub, Noida",
+        },
+        {
+          icon: "🏢",
+          label: "Sector 132, Noida",
+          sub: "Expressway, Noida",
+        },
+        {
+          icon: "🏢",
+          label: "Sector 62, Noida",
+          sub: "IT Hub, Noida",
+        },
+        {
+          icon: "🏢",
+          label: "Sector 63, Noida",
+          sub: "IT Hub, Noida",
+        },
+        {
+          icon: "🏢",
+          label: "Sector 16A, Noida",
+          sub: "Film City Road, Noida",
+        },
+        {
+          icon: "🏫",
+          label: "IIT Delhi",
+          sub: "Hauz Khas, New Delhi",
+        },
+        {
+          icon: "🏫",
+          label: "Delhi University North Campus",
+          sub: "Civil Lines, New Delhi",
+        },
+        {
+          icon: "🏫",
+          label: "Jawaharlal Nehru University",
+          sub: "South Delhi",
+        },
+        {
+          icon: "🏫",
+          label: "Amity University Noida",
+          sub: "Sector 125, Noida",
+        },
+        {
+          icon: "🏫",
+          label: "Bennett University",
+          sub: "Greater Noida",
+        },
+        {
+          icon: "🏥",
+          label: "AIIMS Delhi",
+          sub: "Ansari Nagar, New Delhi",
+        },
+        {
+          icon: "🏥",
+          label: "Fortis Hospital Gurugram",
+          sub: "Sector 44, Gurugram",
+        },
+        {
+          icon: "🏥",
+          label: "Fortis Hospital Noida",
+          sub: "Sector 62, Noida",
+        },
+        {
+          icon: "🏥",
+          label: "Max Hospital Noida",
+          sub: "Sector 19, Noida",
+        },
+        {
+          icon: "🛒",
+          label: "Select Citywalk Mall",
+          sub: "Saket, New Delhi",
+        },
+        {
+          icon: "🛒",
+          label: "DLF Mall of India",
+          sub: "Sector 18, Noida",
+        },
+        {
+          icon: "🛒",
+          label: "The Great India Place",
+          sub: "Sector 38A, Noida",
+        },
+        {
+          icon: "🛒",
+          label: "Ambience Mall Gurugram",
+          sub: "NH-48, Gurugram",
+        },
+        {
+          icon: "🏨",
+          label: "The Oberoi New Delhi",
+          sub: "Dr Zakir Hussain Marg, Delhi",
+        },
+        {
+          icon: "🏨",
+          label: "Leela Ambience Gurugram",
+          sub: "NH-48, Gurugram",
+        },
+        {
+          icon: "🏟️",
+          label: "Jawaharlal Nehru Stadium",
+          sub: "Lodhi Road, New Delhi",
+        },
+
+        /* ── Mumbai ── */
+        {
+          icon: "✈️",
+          label: "Chhatrapati Shivaji Airport T1",
+          sub: "Mumbai, Maharashtra · Airport",
+        },
+        {
+          icon: "✈️",
+          label: "Chhatrapati Shivaji Airport T2",
+          sub: "Mumbai, Maharashtra · Airport",
+        },
+        {
+          icon: "🚉",
+          label: "Mumbai CST Railway Station",
+          sub: "Fort, Mumbai",
+        },
+        {
+          icon: "🚉",
+          label: "Bandra Railway Station",
+          sub: "Bandra, Mumbai",
+        },
+        {
+          icon: "🚉",
+          label: "Dadar Railway Station",
+          sub: "Dadar, Mumbai",
+        },
+        {
+          icon: "🚇",
+          label: "Andheri Metro Station",
+          sub: "Andheri, Mumbai",
+        },
+        {
+          icon: "🏢",
+          label: "Bandra Kurla Complex (BKC)",
+          sub: "Bandra East, Mumbai · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Lower Parel",
+          sub: "Mumbai · Corporate Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Nariman Point",
+          sub: "South Mumbai · Business District",
+        },
+        {
+          icon: "🏢",
+          label: "Powai IT Park",
+          sub: "Hiranandani, Powai, Mumbai",
+        },
+        {
+          icon: "🏢",
+          label: "Mindspace Business Park Malad",
+          sub: "Malad West, Mumbai",
+        },
+        {
+          icon: "🏢",
+          label: "Mindspace Business Park Airoli",
+          sub: "Airoli, Navi Mumbai",
+        },
+        {
+          icon: "🏫",
+          label: "IIT Bombay",
+          sub: "Powai, Mumbai",
+        },
+        {
+          icon: "🏥",
+          label: "Lilavati Hospital",
+          sub: "Bandra, Mumbai",
+        },
+        {
+          icon: "🛒",
+          label: "Phoenix Palladium Mall",
+          sub: "Lower Parel, Mumbai",
+        },
+        {
+          icon: "🏨",
+          label: "Taj Mahal Palace Mumbai",
+          sub: "Colaba, Mumbai",
+        },
+
+        /* ── Bengaluru ── */
+        {
+          icon: "✈️",
+          label: "Kempegowda International Airport",
+          sub: "Devanahalli, Bengaluru · Airport",
+        },
+        {
+          icon: "🚉",
+          label: "Bengaluru City Railway Station",
+          sub: "Majestic, Bengaluru",
+        },
+        {
+          icon: "🚇",
+          label: "MG Road Metro",
+          sub: "Bengaluru",
+        },
+        {
+          icon: "🚇",
+          label: "Whitefield Metro",
+          sub: "ITPL, Bengaluru",
+        },
+        {
+          icon: "🏢",
+          label: "Electronic City Phase I",
+          sub: "Bengaluru · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Electronic City Phase II",
+          sub: "Bengaluru · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Whitefield ITPL",
+          sub: "Bengaluru · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Manyata Tech Park",
+          sub: "Hebbal, Bengaluru · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Bagmane Tech Park",
+          sub: "C.V. Raman Nagar, Bengaluru",
+        },
+        {
+          icon: "🏢",
+          label: "RMZ Ecospace",
+          sub: "Marathahalli, Bengaluru",
+        },
+        {
+          icon: "🏢",
+          label: "Marathahalli Bridge",
+          sub: "Marathahalli, Bengaluru",
+        },
+        {
+          icon: "🏢",
+          label: "Koramangala",
+          sub: "Bengaluru · Startup Hub",
+        },
+        {
+          icon: "🏢",
+          label: "HSR Layout",
+          sub: "Bengaluru · Startup Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Indiranagar 100 Feet Road",
+          sub: "Bengaluru",
+        },
+        {
+          icon: "🏫",
+          label: "IIM Bengaluru",
+          sub: "Bannerghatta Road, Bengaluru",
+        },
+        {
+          icon: "🏫",
+          label: "IISc Bengaluru",
+          sub: "Malleswaram, Bengaluru",
+        },
+        {
+          icon: "🏥",
+          label: "Manipal Hospital Bengaluru",
+          sub: "HAL Old Airport Road, Bengaluru",
+        },
+        {
+          icon: "🛒",
+          label: "Phoenix Marketcity Bengaluru",
+          sub: "Whitefield, Bengaluru",
+        },
+        {
+          icon: "🏟️",
+          label: "M Chinnaswamy Stadium",
+          sub: "MG Road, Bengaluru",
+        },
+
+        /* ── Hyderabad ── */
+        {
+          icon: "✈️",
+          label: "Rajiv Gandhi International Airport",
+          sub: "Shamshabad, Hyderabad · Airport",
+        },
+        {
+          icon: "🚉",
+          label: "Hyderabad Deccan Station",
+          sub: "Nampally, Hyderabad",
+        },
+        {
+          icon: "🚇",
+          label: "Hitech City Metro",
+          sub: "Hyderabad",
+        },
+        {
+          icon: "🚇",
+          label: "Raidurg Metro",
+          sub: "Hyderabad",
+        },
+        {
+          icon: "🏢",
+          label: "HITEC City",
+          sub: "Hyderabad · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Gachibowli",
+          sub: "Hyderabad · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Raheja Mindspace Madhapur",
+          sub: "Hyderabad",
+        },
+        {
+          icon: "🏢",
+          label: "Kondapur",
+          sub: "Hyderabad · IT Corridor",
+        },
+        {
+          icon: "🏢",
+          label: "Financial District",
+          sub: "Hyderabad",
+        },
+        {
+          icon: "🏫",
+          label: "University of Hyderabad",
+          sub: "Gachibowli, Hyderabad",
+        },
+        {
+          icon: "🏥",
+          label: "Apollo Hospital Jubilee Hills",
+          sub: "Hyderabad",
+        },
+        {
+          icon: "🛒",
+          label: "Inorbit Mall Hyderabad",
+          sub: "Mindspace, Hyderabad",
+        },
+
+        /* ── Chennai ── */
+        {
+          icon: "✈️",
+          label: "Chennai International Airport",
+          sub: "Meenambakkam, Chennai · Airport",
+        },
+        {
+          icon: "🚉",
+          label: "Chennai Central Railway Station",
+          sub: "Chennai",
+        },
+        {
+          icon: "🚇",
+          label: "Koyambedu Metro",
+          sub: "Chennai",
+        },
+        {
+          icon: "🏢",
+          label: "Tidel Park Chennai",
+          sub: "Taramani, Chennai · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "OMR (Old Mahabalipuram Road)",
+          sub: "Chennai · IT Corridor",
+        },
+        {
+          icon: "🏢",
+          label: "Sholinganallur",
+          sub: "OMR, Chennai · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Perungudi IT Park",
+          sub: "Chennai",
+        },
+        {
+          icon: "🏢",
+          label: "DLF IT Park Chennai",
+          sub: "Manapakkam, Chennai",
+        },
+        {
+          icon: "🏫",
+          label: "IIT Madras",
+          sub: "Adyar, Chennai",
+        },
+        {
+          icon: "🏥",
+          label: "Apollo Hospital Chennai",
+          sub: "Greams Road, Chennai",
+        },
+
+        /* ── Pune ── */
+        {
+          icon: "✈️",
+          label: "Pune International Airport",
+          sub: "Lohegaon, Pune · Airport",
+        },
+        {
+          icon: "🚉",
+          label: "Pune Railway Station",
+          sub: "Shivajinagar, Pune",
+        },
+        {
+          icon: "🏢",
+          label: "Hinjawadi IT Park Phase I",
+          sub: "Hinjawadi, Pune · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Hinjawadi IT Park Phase II",
+          sub: "Hinjawadi, Pune · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Hinjawadi IT Park Phase III",
+          sub: "Hinjawadi, Pune · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Magarpatta City",
+          sub: "Hadapsar, Pune · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Kharadi IT Hub",
+          sub: "Kharadi, Pune",
+        },
+        {
+          icon: "🏢",
+          label: "EON Free Zone Kharadi",
+          sub: "Pune",
+        },
+        {
+          icon: "🏢",
+          label: "Baner Road",
+          sub: "Pune",
+        },
+        {
+          icon: "🏫",
+          label: "College of Engineering Pune",
+          sub: "Shivajinagar, Pune",
+        },
+        {
+          icon: "🏥",
+          label: "Ruby Hall Clinic",
+          sub: "Sassoon Road, Pune",
+        },
+
+        /* ── Kolkata ── */
+        {
+          icon: "✈️",
+          label: "Netaji Subhas Chandra Bose Airport",
+          sub: "Dum Dum, Kolkata · Airport",
+        },
+        {
+          icon: "🚉",
+          label: "Howrah Railway Station",
+          sub: "Howrah, Kolkata",
+        },
+        {
+          icon: "🚇",
+          label: "Park Street Metro",
+          sub: "Kolkata",
+        },
+        {
+          icon: "🏢",
+          label: "Salt Lake Sector V",
+          sub: "Kolkata · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "New Town Rajarhat",
+          sub: "Kolkata · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "DLF IT Park Kolkata",
+          sub: "New Town, Kolkata",
+        },
+        {
+          icon: "🏢",
+          label: "Park Street",
+          sub: "Central Kolkata",
+        },
+        {
+          icon: "🏫",
+          label: "IIT Kharagpur",
+          sub: "Kharagpur, West Bengal",
+        },
+        {
+          icon: "🏥",
+          label: "Apollo Gleneagles Hospital",
+          sub: "Kadapara, Kolkata",
+        },
+
+        /* ── Ahmedabad ── */
+        {
+          icon: "✈️",
+          label: "Sardar Vallabhbhai Patel Airport",
+          sub: "Ahmedabad, Gujarat · Airport",
+        },
+        {
+          icon: "🚉",
+          label: "Ahmedabad Railway Station",
+          sub: "Kalupur, Ahmedabad",
+        },
+        {
+          icon: "🏢",
+          label: "GIFT City",
+          sub: "Gandhinagar, Gujarat · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Prahlad Nagar Corporate Road",
+          sub: "Ahmedabad · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "SG Highway",
+          sub: "Satellite, Ahmedabad",
+        },
+        {
+          icon: "🏫",
+          label: "IIM Ahmedabad",
+          sub: "Vastrapur, Ahmedabad",
+        },
+        {
+          icon: "🏥",
+          label: "Apollo Hospital Ahmedabad",
+          sub: "Jubilee Commercial Hub, Ahmedabad",
+        },
+
+        /* ── Jaipur ── */
+        {
+          icon: "✈️",
+          label: "Jaipur International Airport",
+          sub: "Sanganer, Jaipur · Airport",
+        },
+        {
+          icon: "🚉",
+          label: "Jaipur Railway Station",
+          sub: "Sindhi Camp, Jaipur",
+        },
+        {
+          icon: "🏢",
+          label: "Sitapura Industrial Area",
+          sub: "Jaipur · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Malviya Nagar Jaipur",
+          sub: "Jaipur",
+        },
+        {
+          icon: "🏟️",
+          label: "Hawa Mahal",
+          sub: "Jaipur, Rajasthan · Landmark",
+        },
+        {
+          icon: "🏟️",
+          label: "Amber Fort",
+          sub: "Jaipur, Rajasthan · Landmark",
+        },
+
+        /* ── Chandigarh ── */
+        {
+          icon: "✈️",
+          label: "Chandigarh International Airport",
+          sub: "Chandigarh · Airport",
+        },
+        {
+          icon: "🚉",
+          label: "Chandigarh Railway Station",
+          sub: "Chandigarh",
+        },
+        {
+          icon: "🏢",
+          label: "IT Park Chandigarh",
+          sub: "Phase-VIII, Mohali · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Mohali Sector 70",
+          sub: "Mohali, Punjab",
+        },
+        {
+          icon: "🏫",
+          label: "PEC University Chandigarh",
+          sub: "Sector 12, Chandigarh",
+        },
+
+        /* ── Kolhapur / Nashik / Nagpur ── */
+        {
+          icon: "✈️",
+          label: "Dr Babasaheb Ambedkar Intl Airport",
+          sub: "Nagpur, Maharashtra · Airport",
+        },
+        {
+          icon: "🏢",
+          label: "MIHAN SEZ Nagpur",
+          sub: "Nagpur · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Butibori IT Park",
+          sub: "Nagpur, Maharashtra",
+        },
+        {
+          icon: "✈️",
+          label: "Nashik Airport",
+          sub: "Ozar, Nashik · Airport",
+        },
+
+        /* ── Indore ── */
+        {
+          icon: "✈️",
+          label: "Devi Ahilya Bai Airport Indore",
+          sub: "Indore, MP · Airport",
+        },
+        {
+          icon: "🏢",
+          label: "Brilliant Convention Centre",
+          sub: "Indore, MP",
+        },
+        {
+          icon: "🏢",
+          label: "Palasia Square",
+          sub: "Indore, MP",
+        },
+
+        /* ── Lucknow ── */
+        {
+          icon: "✈️",
+          label: "Chaudhary Charan Singh Airport",
+          sub: "Lucknow, UP · Airport",
+        },
+        {
+          icon: "🚉",
+          label: "Lucknow Charbagh Railway Station",
+          sub: "Lucknow, UP",
+        },
+        {
+          icon: "🏢",
+          label: "Hazratganj",
+          sub: "Lucknow, UP · Central Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Gomti Nagar",
+          sub: "Lucknow, UP · IT Hub",
+        },
+
+        /* ── Bhubaneswar ── */
+        {
+          icon: "✈️",
+          label: "Biju Patnaik International Airport",
+          sub: "Bhubaneswar, Odisha · Airport",
+        },
+        {
+          icon: "🏢",
+          label: "Infocity Bhubaneswar",
+          sub: "Bhubaneswar · IT Hub",
+        },
+        {
+          icon: "🏫",
+          label: "IIT Bhubaneswar",
+          sub: "Bhubaneswar, Odisha",
+        },
+
+        /* ── Kochi ── */
+        {
+          icon: "✈️",
+          label: "Cochin International Airport",
+          sub: "Nedumbassery, Kochi · Airport",
+        },
+        {
+          icon: "🚇",
+          label: "Ernakulam South Metro",
+          sub: "Kochi, Kerala",
+        },
+        {
+          icon: "🏢",
+          label: "Infopark Kochi Phase I",
+          sub: "Kakkanad, Kochi · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Infopark Kochi Phase II",
+          sub: "Kakkanad, Kochi · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "SmartCity Kochi",
+          sub: "Kakkanad, Kochi",
+        },
+
+        /* ── Thiruvananthapuram ── */
+        {
+          icon: "✈️",
+          label: "Trivandrum International Airport",
+          sub: "Thiruvananthapuram, Kerala · Airport",
+        },
+        {
+          icon: "🏢",
+          label: "Technopark Phase I Trivandrum",
+          sub: "Thiruvananthapuram · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Technopark Phase II Trivandrum",
+          sub: "Thiruvananthapuram · IT Hub",
+        },
+        {
+          icon: "🏢",
+          label: "Technopark Phase III Trivandrum",
+          sub: "Thiruvananthapuram · IT Hub",
+        },
+
+        /* ── Coimbatore / Madurai ── */
+        {
+          icon: "✈️",
+          label: "Coimbatore International Airport",
+          sub: "Coimbatore, Tamil Nadu · Airport",
+        },
+        {
+          icon: "🏢",
+          label: "TIDEL Park Coimbatore",
+          sub: "Coimbatore, Tamil Nadu",
+        },
+        {
+          icon: "✈️",
+          label: "Madurai Airport",
+          sub: "Madurai, Tamil Nadu · Airport",
+        },
+
+        /* ── Visakhapatnam ── */
+        {
+          icon: "✈️",
+          label: "Visakhapatnam Airport",
+          sub: "Visakhapatnam, AP · Airport",
+        },
+        {
+          icon: "🏢",
+          label: "Rushikonda IT SEZ",
+          sub: "Visakhapatnam, AP · IT Hub",
+        },
+
+        /* ── Guwahati / NE India ── */
+        {
+          icon: "✈️",
+          label: "Lokpriya Gopinath Bordoloi Airport",
+          sub: "Guwahati, Assam · Airport",
+        },
+        {
+          icon: "🚉",
+          label: "Guwahati Railway Station",
+          sub: "Guwahati, Assam",
+        },
+
+        /* ── Surat / Vadodara ── */
+        {
+          icon: "✈️",
+          label: "Surat Airport",
+          sub: "Surat, Gujarat · Airport",
+        },
+        {
+          icon: "✈️",
+          label: "Vadodara Airport",
+          sub: "Vadodara, Gujarat · Airport",
+        },
+        {
+          icon: "🏢",
+          label: "Surat IT Park",
+          sub: "Surat, Gujarat",
+        },
+
+        /* ── National Landmarks ── */
+        {
+          icon: "🏟️",
+          label: "India Gate",
+          sub: "Rajpath, New Delhi · Landmark",
+        },
+        {
+          icon: "🏟️",
+          label: "Gateway of India",
+          sub: "Apollo Bunder, Mumbai · Landmark",
+        },
+        {
+          icon: "🏟️",
+          label: "Charminar",
+          sub: "Hyderabad · Landmark",
+        },
+        {
+          icon: "🏟️",
+          label: "Victoria Memorial",
+          sub: "Kolkata · Landmark",
+        },
+        {
+          icon: "🏟️",
+          label: "Lotus Temple",
+          sub: "Bahapur, New Delhi · Landmark",
+        },
+        {
+          icon: "🏟️",
+          label: "Qutub Minar",
+          sub: "Mehrauli, New Delhi · Landmark",
+        },
+        {
+          icon: "🏟️",
+          label: "Taj Mahal",
+          sub: "Agra, Uttar Pradesh · Landmark",
+        },
+        {
+          icon: "🏟️",
+          label: "Mysore Palace",
+          sub: "Mysuru, Karnataka · Landmark",
+        },
+      ];
+
+      let _addrTarget = "from";
+
+      function openAddressModal(target) {
+        _addrTarget = target;
+        const title = document.getElementById("addrModalTitle");
+        title.textContent =
+          target === "from" ? "Change Pickup" : "Change Destination";
+        const input = document.getElementById("addrInput");
+        input.value = "";
+        input.placeholder =
+          target === "from" ? "Search pickup location…" : "Search destination…";
+        document.getElementById("addrSuggestLabel").textContent =
+          "Browse by city";
+        renderSuggestions(allLocations, true);
+        document.getElementById("addressModal").classList.add("open");
+        setTimeout(() => input.focus(), 350);
+      }
+
+      /* City group labels derived from sub field */
+      const cityGroups = [
+        {
+          key: "saved",
+          label: "⭐ Saved Places",
+        },
+        {
+          key: "Delhi",
+          label: "🏙️ Delhi NCR",
+        },
+        {
+          key: "Mumbai",
+          label: "🌊 Mumbai",
+        },
+        {
+          key: "Bengaluru",
+          label: "🌿 Bengaluru",
+        },
+        {
+          key: "Hyderabad",
+          label: "🕌 Hyderabad",
+        },
+        {
+          key: "Chennai",
+          label: "🌴 Chennai",
+        },
+        {
+          key: "Pune",
+          label: "🏞️ Pune",
+        },
+        {
+          key: "Kolkata",
+          label: "🎨 Kolkata",
+        },
+        {
+          key: "Ahmedabad",
+          label: "💎 Ahmedabad",
+        },
+        {
+          key: "Jaipur",
+          label: "🏰 Jaipur",
+        },
+        {
+          key: "Chandigarh",
+          label: "🌾 Chandigarh",
+        },
+        {
+          key: "Kochi",
+          label: "🌺 Kochi",
+        },
+        {
+          key: "Nagpur",
+          label: "🍊 Nagpur",
+        },
+        {
+          key: "Indore",
+          label: "🏛️ Indore",
+        },
+        {
+          key: "Lucknow",
+          label: "🕰️ Lucknow",
+        },
+        {
+          key: "Bhubaneswar",
+          label: "🛕 Bhubaneswar",
+        },
+        {
+          key: "Coimbatore",
+          label: "🏭 Coimbatore",
+        },
+        {
+          key: "Visakhapatnam",
+          label: "⚓ Visakhapatnam",
+        },
+        {
+          key: "Guwahati",
+          label: "🦏 Guwahati",
+        },
+        {
+          key: "Surat",
+          label: "💰 Surat",
+        },
+        {
+          key: "Vadodara",
+          label: "🏛️ Vadodara",
+        },
+        {
+          key: "Agra",
+          label: "🕌 Agra",
+        },
+        {
+          key: "Mysuru",
+          label: "🏯 Mysuru",
+        },
+        {
+          key: "Trivandrum",
+          label: "🌴 Thiruvananthapuram",
+        },
+        {
+          key: "Nashik",
+          label: "🍇 Nashik",
+        },
+        {
+          key: "Madurai",
+          label: "🏛️ Madurai",
+        },
+      ];
+
+      function getGroupKey(loc) {
+        if (loc.cat === "saved") return "saved";
+        for (const g of cityGroups) {
+          if (g.key === "saved") continue;
+          if (loc.sub.includes(g.key) || loc.label.includes(g.key))
+            return g.key;
+        }
+        return "other";
+      }
+
+      function renderSuggestions(list, grouped) {
+        const container = document.getElementById("addrSuggestions");
+        if (!list.length) {
+          container.innerHTML = `<div style="text-align:center;padding:24px 0;color:#94A3B8;font-size:13px;">No locations found</div>`;
+          return;
+        }
+
+        const makeItem = (loc) => {
+          const safe = loc.label.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+          return `<div class="addr-suggestion" onclick="selectAddress('${safe}')">
+        <div style="width:36px;height:36px;border-radius:10px;background:#F1F5F9;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px;">${loc.icon}</div>
+        <div style="min-width:0;">
+          <div style="font-size:13px;font-weight:600;color:#0F172A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${loc.label}</div>
+          <div style="font-size:11px;color:#94A3B8;margin-top:1px;">${loc.sub}</div>
+        </div>
+      </div>`;
+        };
+
+        if (!grouped) {
+          container.innerHTML = list.map(makeItem).join("");
+          return;
+        }
+
+        /* Group by city */
+        const groups = {};
+        list.forEach((loc) => {
+          const key = getGroupKey(loc);
+          if (!groups[key]) groups[key] = [];
+          groups[key].push(loc);
+        });
+
+        let html = "";
+        /* Saved first */
+        if (groups["saved"]) {
+          html += `<div style="font-size:10px;font-weight:700;color:#0F766E;letter-spacing:.07em;text-transform:uppercase;padding:4px 0 4px 4px;">⭐ Saved Places</div>`;
+          html += groups["saved"].map(makeItem).join("");
+          delete groups["saved"];
+        }
+        /* Rest in order */
+        for (const g of cityGroups) {
+          if (groups[g.key] && groups[g.key].length) {
+            html += `<div style="font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:.07em;text-transform:uppercase;padding:10px 0 4px 4px;">${g.label}</div>`;
+            html += groups[g.key].map(makeItem).join("");
+          }
+        }
+        if (groups["other"]) {
+          html += `<div style="font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:.07em;text-transform:uppercase;padding:10px 0 4px 4px;">📍 Other</div>`;
+          html += groups["other"].map(makeItem).join("");
+        }
+        container.innerHTML = html;
+      }
+
+      function filterSuggestions(q) {
+        const label = document.getElementById("addrSuggestLabel");
+        if (!q.trim()) {
+          label.textContent = "Browse by city";
+          renderSuggestions(allLocations, true);
+          return;
+        }
+        label.textContent = `Results for "${q}"`;
+        const ql = q.toLowerCase();
+        const filtered = allLocations.filter(
+          (l) =>
+            l.label.toLowerCase().includes(ql) ||
+            l.sub.toLowerCase().includes(ql),
+        );
+        renderSuggestions(filtered, false);
+      }
+
+      function selectAddress(addr) {
+        const el = document.getElementById(
+          _addrTarget === "from" ? "fromText" : "toText",
+        );
+        el.textContent = addr;
+        closeModal("addressModal");
+        showToast("📍 Address updated");
+      }
+
+      /* ── Swap route ── */
+      function swapRoute() {
+        const from = document.getElementById("fromText");
+        const to = document.getElementById("toText");
+        const tmp = from.textContent;
+        from.textContent = to.textContent;
+        to.textContent = tmp;
+        showToast("🔄 Route swapped");
+      }
+
+      /* ── Tab switching ── */
+      const tabLabels = ["Home", "Rides", "Community", "Savings", "Profile"];
+
+      function switchTab(idx) {
+        document.querySelectorAll(".tab-item").forEach((tab, i) => {
+          const label = tab.querySelector("span");
+          const iconDiv = tab.querySelector("div");
+          if (i === idx) {
+            label.style.color = "#0F766E";
+            label.style.fontWeight = "700";
+            if (iconDiv) {
+              iconDiv.style.background = "rgba(15,118,110,0.1)";
+              iconDiv.style.borderRadius = "10px";
+            }
+          } else {
+            label.style.color = "#94A3B8";
+            label.style.fontWeight = "500";
+            if (iconDiv) {
+              iconDiv.style.background = "transparent";
+              iconDiv.style.borderRadius = "0";
+            }
+          }
+        });
+        if (idx !== 0) showToast("📂 Opening " + tabLabels[idx] + "...");
+      }
+
+      /* ── Booking modal ── */
+      function openBookingModal() {
+        document.getElementById("bookingModal").classList.add("open");
+      }
+
+      function closeModal(id) {
+        document.getElementById(id).classList.remove("open");
+      }
+
+      function closeOnBackdrop(e, id) {
+        if (e.target.id === id) closeModal(id);
+      }
+
+      function openSafetyModal() {
+        document.getElementById("safetyModal").classList.add("open");
+      }
+
+      /* ── Schedule selection ── */
+      function selectSchedule(type) {
+        const now = document.getElementById("scheduleNow");
+        const later = document.getElementById("scheduleLater");
+        const active = "border:2px solid #0F766E;background:#F0FDF4;";
+        const inactive = "border:2px solid #E2E8F0;background:#fff;";
+        if (type === "now") {
+          now.style.cssText += ";border:2px solid #0F766E;background:#F0FDF4;";
+          later.style.cssText += ";border:2px solid #E2E8F0;background:#fff;";
+          now.querySelector("div").style.color = "#0F766E";
+          later.querySelector("div").style.color = "#374151";
+        } else {
+          later.style.cssText +=
+            ";border:2px solid #0F766E;background:#F0FDF4;";
+          now.style.cssText += ";border:2px solid #E2E8F0;background:#fff;";
+          later.querySelector("div").style.color = "#0F766E";
+          now.querySelector("div").style.color = "#374151";
+        }
+      }
+
+      /* ── Payment selection ── */
+      function selectPayment(type) {
+        ["upi", "cash", "wallet"].forEach((t) => {
+          const el = document.getElementById(
+            "pay" + t.charAt(0).toUpperCase() + t.slice(1),
+          );
+          if (t === type) {
+            el.style.border = "2px solid #0F766E";
+            el.style.background = "#F0FDF4";
+            el.querySelector("span:last-child").style.color = "#0F766E";
+          } else {
+            el.style.border = "2px solid #E2E8F0";
+            el.style.background = "#fff";
+            el.querySelector("span:last-child").style.color = "#374151";
+          }
+        });
+      }
+
+      /* ── Confirm booking ── */
+      function confirmBooking() {
+        closeModal("bookingModal");
+        showToast("🎉 Ride confirmed! Arjun arrives in 4 min");
+        /* Animate savings counter */
+        setTimeout(() => {
+          const el = document.getElementById("savingsAmt");
+          el.classList.add("count-anim");
+          el.textContent = "₹1,470";
+          setTimeout(() => el.classList.remove("count-anim"), 500);
+        }, 1000);
+      }
+
+      /* ── Copy referral code ── */
+      function copyCode() {
+        const code = document.getElementById("referralCode").textContent;
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(code).then(() => {
+            const btn = document.getElementById("copyLabel");
+            btn.textContent = "Copied!";
+            showToast("✅ Code NIKHIL50 copied to clipboard!");
+            setTimeout(() => (btn.textContent = "Copy"), 2000);
+          });
+        } else {
+          showToast("✅ Code NIKHIL50 copied!");
+        }
+      }
+    </script>
+  </body>
+</html>
